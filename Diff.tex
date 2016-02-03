@@ -53,12 +53,13 @@ We may have initial conditions, $R(0)$ and $J(0)$, and plot them on a \textbf{ph
              after end axis/.code={
   }]
 
-\addplot[color = green, smooth, thick] coordinates
+\addplot[color = green, smooth, thick,] coordinates
     {(-4,6) (-2,1) (0,0)};
 \addplot[color = blue, smooth, thick] coordinates
     {(3,5) (1,4) (0,0)};
 \addplot[color = red, smooth, thick] coordinates
-    {(-4,-4.5) (-3,-4) (0,0)};
+    {(-3,-4.5) (-2,-2) (0,0)};
+\fill[black] (axis cs:0,0) circle (1);
 \end{axis}
 \end{tikzpicture}
 \end{figure}
@@ -92,7 +93,7 @@ Let $x = (s,N,d_1,d_2,d_3,\dots,d_k,\dots)$, where:
 \item $s \in \{+1,-1\}$
 \item $N \in \mathbb{Z}$
 \item $d_k \in \mathbb{D} = \{0,1,2,3,4,5,6,7,8,9\}$
-\item $\neg (\exists k : d_{k+1} = d_{k+2} = \dots = 0)$
+\item $\neg (\exists k : d_{k+1} = d_{k+2} = \dots = 0)$, this is to prevent multiple sequences from being the same number
 \end{itemize}
 
 In this case, ``2.49'' is shorthand for $(+1,2,4,8,9,9,9,\dots)$
