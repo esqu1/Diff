@@ -97,4 +97,60 @@ Let $x = (s,N,d_1,d_2,d_3,\dots,d_k,\dots)$, where:
 \end{itemize}
 
 In this case, ``2.49'' is shorthand for $(+1,2,4,8,9,9,9,\dots)$
+
+\section{2/4/16}
+\textbf{Aim}: Background in $\mathbb{R}$; Fundamental Existence/Uniqueness Question \\
+
+Recall:
+\begin{theorem}[Supremum/Infimum Theorem] 
+\
+\begin{enumerate}
+\item If $\mathcal{A}$ is a non-empty set of $\mathbb{R}$, and is bounded above (i.e. $\mathcal \subseteq (-\infty, b]$ for some $b \in \mathbb{R}$), then there is a \underline{least} upper bound for $\mathcal{A}$, namely $a \in \mathbb{R}$ such that
+\begin{enumerate}
+\item $\mathcal{A} \subseteq (-\infty, a]$
+\item if $x < a$, then $\mathcal{A} \not \subseteq (-\infty, x]$
+\end{enumerate}
+This $a$ is called the called the \textbf{supremum} of $\mathcal{A}$, written $\sup{A}$.
+\item $\inf{A}$. This is the \underline{greatest lower bound} for $\mathcal{A}$, or the \textbf{infimum}, provided $\mathcal{A} \neq \emptyset$ and $\mathcal{A}$ has a lower bound at all.
+\end{enumerate}
+\end{theorem}
+
+Recall that the Riemann integral is taking the limit of a partition over an interval $[a,b]$. But when we take the limit, we make the mesh of the partition, $\norm{\mathcal{P}}$, approach zero, where \[ \mathcal{P} = \max_{1 \le i \le n}{\Delta x_i} \]
+
+To fix this, we can define: \[ \lowint_a^b f(x) \ dx = \sup\left\{ \sum_{i=1}^n[\inf\{f(x) \ | \ x_{i-1} \le x \le x_i \}\Delta x_i] \ |\ a = x_0 < x_1 < \dots < x_n = b\right\} \] % HOW DO YOU TYPE AN INTEGRAL WITH AN UNDERLINE
+
+This is a ``down-and-up'' procedure. The sum of the rectangle areas is a down approximation since we use the minimum possible height to find the area. Then, we take the supremum of that, since for any lower approximation there will always be a higher approximation. Turns out there will never be a maximum; that's why we take the supremum. This is a \textbf{lower Riemann sum}
+
+We can also define the same thing for an \textbf{upper Riemann sum}: \[ \upint_a^b f(x) \ dx = \inf\left\{ \sum_{i=1}^n[\sup\{f(x) \ | \ x_{i-1} \le x \le x_i \}\Delta x_i] \ |\ a = x_0 < x_1 < \dots < x_n = b\right\} \]
+
+Therefore, the following inequality is true: \[ \lowint_a^b f \le \upint_a^b f \]
+
+If these two are equal, then we say that $f$ is \textbf{Riemann integrable}. \\ \\
+
+Here's an example of a function that is NOT Riemann integrable:
+\[ f(x) = 
+\begin{cases}
+0 \text{ if } x \in \mathbb{Q} \cap [0,1] \\
+1 \text{ if } x \in [0,1]\backslash \mathbb{Q}
+\end{cases}
+\]
+
+Note that $\lowint_0^1 f = 0$ and $\upint_0^1 f = 1$, so this is not Riemann integrable.
+
+\subsection{Real Numbers, Again}
+\[ \mathbb{R} = \{0\} \cup \{(s,N,d_1,d_2,\dots, d_k,\dots \ | \ s \in \{-1,+1\}, N \in \mathbb{Z}^+, d_k \in \mathbb{D}, \text{no 0-tail} \}\]
+
+Define $\mathbb{R}^+ = \{(s,N,d_1,d_2,\dots) \ | \ s = +1\}$ (positive reals)\\
+Write $x = N.d_1d_2d_3\dots$ and $y = M.e_1e_2e_3\dots$. \\
+If $x,y \in \mathbb{R}^+$, then $x<y$ if either $N < M$ or $N =M$ and $d_1 < e_1$ or $N = M$, $d_1 = e_1$ and $d_2 < e_2$, or... \\ \\
+$0<x$ if $x \in \mathbb{R}^+$, and $x < 0$ if $x \in \mathbb{R}^+$, and $x<y$ if $x \in \mathbb{R}^-, y \in \mathbb{R}^+$. 
+
+\[ -(s,N,d_1,d_2,\dots) = (-s,N,d_1,d_2) \]
+
+Then if $x,y \in \mathbb{R}^-$, and $x<y$ if $-y < -x$
+
+
+
+
+
 \end{document}
