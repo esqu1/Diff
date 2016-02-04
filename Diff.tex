@@ -99,9 +99,9 @@ Let $x = (s,N,d_1,d_2,d_3,\dots,d_k,\dots)$, where:
 In this case, ``2.49'' is shorthand for $(+1,2,4,8,9,9,9,\dots)$
 
 \section{2/4/16}
-\textbf{Aim}: Background in $\mathbb{R}$; Fundamental Existence/Uniqueness Question \\
+\textbf{Aim}: Background in $\mathbb{R}$; Fundamental Existence/Uniqueness Question
 
-Recall:
+\subsection{Supremums and Infimums in Integrals}
 \begin{theorem}[Supremum/Infimum Theorem] 
 \
 \begin{enumerate}
@@ -117,11 +117,11 @@ This $a$ is called the called the \textbf{supremum} of $\mathcal{A}$, written $\
 
 Recall that the Riemann integral is taking the limit of a partition over an interval $[a,b]$. But when we take the limit, we make the mesh of the partition, $\norm{\mathcal{P}}$, approach zero, where \[ \mathcal{P} = \max_{1 \le i \le n}{\Delta x_i} \]
 
-To fix this, we can define: \[ \lowint_a^b f(x) \ dx = \sup\left\{ \sum_{i=1}^n[\inf\{f(x) \ | \ x_{i-1} \le x \le x_i \}\Delta x_i] \ |\ a = x_0 < x_1 < \dots < x_n = b\right\} \] % HOW DO YOU TYPE AN INTEGRAL WITH AN UNDERLINE
+To fix this, we can define: \[ \lowint_a^b f(x) \ dx = \sup\left\{ \sum_{i=1}^n[\inf\{f(x) \ | \ x_{i-1} \le x \le x_i \}\Delta x_i] \ \middle| \ a = x_0 < x_1 < \dots < x_n = b\right\} \] 
 
-This is a ``down-and-up'' procedure. The sum of the rectangle areas is a down approximation since we use the minimum possible height to find the area. Then, we take the supremum of that, since for any lower approximation there will always be a higher approximation. Turns out there will never be a maximum; that's why we take the supremum. This is a \textbf{lower Riemann sum}
+This is a ``down-and-up'' procedure. The sum of the rectangle areas is a down approximation since we use the minimum possible height to find the area. Then, we take the supremum of that, since for any lower approximation there will always be a higher approximation. Turns out there will never be a maximum; that's why we take the supremum. This is a \textbf{lower Riemann sum}.
 
-We can also define the same thing for an \textbf{upper Riemann sum}: \[ \upint_a^b f(x) \ dx = \inf\left\{ \sum_{i=1}^n[\sup\{f(x) \ | \ x_{i-1} \le x \le x_i \}\Delta x_i] \ |\ a = x_0 < x_1 < \dots < x_n = b\right\} \]
+We can also define the same thing for an \textbf{upper Riemann sum}: \[ \upint_a^b f(x) \ dx = \inf\left\{ \sum_{i=1}^n[\sup\{f(x) \ | \ x_{i-1} \le x \le x_i \}\Delta x_i] \ \middle| \ a = x_0 < x_1 < \dots < x_n = b\right\} \]
 
 Therefore, the following inequality is true: \[ \lowint_a^b f \le \upint_a^b f \]
 
@@ -142,7 +142,7 @@ We have shorthand for our previous definition of the real numbers.
 \[ \mathbb{R} = \{0\} \cup \{(s,N,d_1,d_2,\dots, d_k,\dots \ | \ s \in \{-1,+1\}, N \in \mathbb{Z}^+, d_k \in \mathbb{D}, \text{no 0-tail} \}\]
 and the positive reals: \[ \mathbb{R}^+ = \{(s,N,d_1,d_2,\dots) \ | \ s = +1\} \]
 Let us write  $x = \underline{N}.\underline{d_1d_2d_3\dots}$ and $y = \underline{M}.\underline{e_1e_2e_3\dots}$. \\ \\
-We also define negation as: \[ -(s,N,d_1,d_2,\dots) = (-s,N,d_1,d_2,\dots) \]
+We also define negation as: \[ -(s,N,d_1,d_2,\dots) \coloneqq (-s,N,d_1,d_2,\dots) \]
 Then we can define the ``less than'' operation as follows:
 \begin{itemize}
 \item If $x,y \in \mathbb{R}^+$, then $x<y$ if either $N < M$ or $N =M$ and $d_1 < e_1$ or $N = M$, $d_1 = e_1$ and $d_2 < e_2$, or...
