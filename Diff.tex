@@ -138,16 +138,19 @@ Here's an example of a function that is NOT Riemann integrable:
 Note that $\lowint_0^1 f = 0$ and $\upint_0^1 f = 1$, so this is not Riemann integrable.
 
 \subsection{Real Numbers, Again}
+We have shorthand for our previous definition of the real numbers.
 \[ \mathbb{R} = \{0\} \cup \{(s,N,d_1,d_2,\dots, d_k,\dots \ | \ s \in \{-1,+1\}, N \in \mathbb{Z}^+, d_k \in \mathbb{D}, \text{no 0-tail} \}\]
-
-Define $\mathbb{R}^+ = \{(s,N,d_1,d_2,\dots) \ | \ s = +1\}$ (positive reals)\\
-Write $x = N.d_1d_2d_3\dots$ and $y = M.e_1e_2e_3\dots$. \\
-If $x,y \in \mathbb{R}^+$, then $x<y$ if either $N < M$ or $N =M$ and $d_1 < e_1$ or $N = M$, $d_1 = e_1$ and $d_2 < e_2$, or... \\ \\
-$0<x$ if $x \in \mathbb{R}^+$, and $x < 0$ if $x \in \mathbb{R}^+$, and $x<y$ if $x \in \mathbb{R}^-, y \in \mathbb{R}^+$. 
-
-\[ -(s,N,d_1,d_2,\dots) = (-s,N,d_1,d_2) \]
-
-Then if $x,y \in \mathbb{R}^-$, and $x<y$ if $-y < -x$
+and the positive reals: \[ \mathbb{R}^+ = \{(s,N,d_1,d_2,\dots) \ | \ s = +1\} \]
+Let us write  $x = \underline{N}.\underline{d_1d_2d_3\dots}$ and $y = \underline{M}.\underline{e_1e_2e_3\dots}$. \\ \\
+We also define negation as: \[ -(s,N,d_1,d_2,\dots) = (-s,N,d_1,d_2) \]
+Then we can define the ``less than'' operation as follows:
+\begin{itemize}
+\item If $x,y \in \mathbb{R}^+$, then $x<y$ if either $N < M$ or $N =M$ and $d_1 < e_1$ or $N = M$, $d_1 = e_1$ and $d_2 < e_2$, or...
+\item $0<x$ if $x \in \mathbb{R}^+$
+\item $x < 0$ if $x \in \mathbb{R}^+$
+\item  $x<y$ if $x \in \mathbb{R}^-, y \in \mathbb{R}^+$. 
+\item $x,y \in \mathbb{R}^-$, and $x<y$ if $-y < -x$
+\end{itemize}
 
 
 
