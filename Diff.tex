@@ -19,6 +19,11 @@
 \newpage
 \section*{Introduction}
 
+\begin{itemize}
+\item Email: jstern@stuy.edu
+\item Office: Room 351, periods 5,7,9
+\end{itemize}
+
 \section{2/3/16: Background on $\mathbb{R}$; Basic Existence Question of ODE's}
 \subsection{Romeo and Juliet}
 \[
@@ -156,7 +161,47 @@ Then we can define the ``less than'' operation as follows:
 \item $x,y \in \mathbb{R}^-$, and $x<y$ if $-y < -x$
 \end{itemize}
 
+\section{2/5/16: Fundamental Existence of Uniqueness Theorem}
 
+\subsection{Terminology}
+A \textbf{differential equation} is a relation between one or more unknown functions and at least some (but finitely many) of their derivatives, plus the independent variables. \\ \\ Examples: 
+\[ 
+\begin{aligned}
+y' + 2xy - x^2 &= 3 \\ 
+y''' + 2x^2y'' - 3x^3y' +xy - x^5 + 1 &= 0 \\
+(y')^{y''} - e^{y'''} + x &= 0 \\
+\end{aligned}
+\]
+Or,
+
+\[ 
+\pvec{y}' = A(x)\vec{y} 
+\]
+where 
+\[
+\pvec{y} = \vec{y}(x) = 
+\begin{bmatrix}
+y_1(x) \\
+y_2(x) \\
+\vdots \\
+y_n(x)
+\end{bmatrix}
+\]
+
+\[
+A(x) = 
+\begin{bmatrix}
+a_{11}(x) & a_{12}(x) & \cdots & a_{1n}(x) \\
+a_{21}(x) & a_{22}(x) & \cdots & a_{2n}(x) \\
+\vdots & \vdots & \ddots & \vdots \\ 
+a_{n1}(x) & a_{n2}(x) & \cdots & a_{nn}(x) 
+\end{bmatrix}
+\]
+
+There are two different types of differential equations: ODE's (ordinary, where all unknown functions depend on a single, same independent variable) and PDE's (partial, anything else). 
+
+\[ \text{Wave equation: } \frac{\partial^2u}{\partial x^2} = c^2 \frac{\partial^2u}{\partial t^2} \]
+\[ u = g(x-t) + h(x+t) \]
 
 
 
