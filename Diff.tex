@@ -204,6 +204,59 @@ There are two different types of differential equations: ODE's (ordinary, where 
 \[ \text{Wave equation: } \frac{\partial^2u}{\partial x^2} = c^2 \frac{\partial^2u}{\partial t^2} \]
 \[ u = g(x-t) + h(x+t) \]
 
+\section{2/9/16: Basic Existence and Uniqueness Theorem}
+
+\begin{theorem}[Flow Theorem]
+Let $\vec{F}(\vec{x}) = (F_1(\vec{x}),F_2(\vec{x}), \dots, F_n(\vec{x}))$ be a vector field defined on some closed and bounded region $\mathcal{D} \subseteq \mathbb{R}^n$. Also assume $\vec{F}$ is $C^1$; namely, $\frac{\partial F_i}{\partial x_j}$ is continuous everywhere interior to D, for any $i$ and $j$. \\ \\
+Let $\vec{p}$ be a specific point interior to $\mathcal{D}$. Then $\exists$ a function $\vec{\sigma}(t)$ from some ``time'' interval $(-\varepsilon, \varepsilon)$ with $\varepsilon > 0$ into $\mathcal{D}$, such that $\vec{\sigma}(0) = \vec{p}$ and $\pvec{\sigma}'(t) = \vec{F}(\vec{\sigma}(t))$ for any $t \in (-\varepsilon, \varepsilon)$.
+\end{theorem}
+
+This theorem basically says that in a vector field, we can use the vector field to get the velocity of a curve. We call $\vec{\sigma}(t)$ a \textbf{flow} for $\vec{F}$, starting at $\vec{p}$. This flow is, in fact, unique, in the sense that any two flows for the same $\vec{F}$ starting at the same point must agree whenever they are both defined.
+
+This is meaningful in that we can treat it as a differential equation:
+\[
+\begin{cases}
+\sigma_1' &= F_1(\sigma_1,\sigma_2,\dots,\sigma_n) \\
+\sigma_2' &= F_2(\sigma_1,\sigma_2,\dots,\sigma_n) \\
+\ \vdots &\ \quad \vdots \\
+\sigma_n' &= F_n(\sigma_1,\sigma_2,\dots,\sigma_n) \\
+\end{cases}
+\]
+
+\[
+\begin{cases}
+\sigma_1(0) &= p_1 \\
+\sigma_2(0) &= p_2 \\
+\ \vdots &\ \quad \vdots \\
+\sigma_n(0) &= p_n \\
+\end{cases}
+\]
+
+
+We will prove this for two dimensions only; the proof can be extended to greater than two dimensions. \newpage
+
+
+\begin{proof}
+
+\end{proof}
+\subsection{Second-Order}
+\[ mx'' = -kx, \quad x(0) = x_0, \quad x'(0) = v_0 \]
+\[ x = x(t), \quad v = v(t) = x'(t), \quad a = a(t) = x''(t) \]
+where $k > 0$ is the spring constant. We can rewrite this as:
+\[
+\begin{cases}
+x' &= v = F_1(x,v) \\
+v' &= -\frac{k}{m}x = F_2(x,v)
+\end{cases}
+\quad \text{and} \quad 
+\begin{cases}
+x(0) &= x_0 \\
+v(0) &= v_0
+\end{cases}
+\]
+
+The Flow Theorem will tell us there is a unique solution, for some time interval.
+
 
 
 \end{document}
