@@ -232,13 +232,6 @@ This is meaningful in that we can treat it as a differential equation:
 \end{cases}
 \]
 
-
-We will prove this for two dimensions only; the proof can be extended to greater than two dimensions. \newpage
-
-
-\begin{proof}
-
-\end{proof}
 \subsection{Second-Order}
 \[ mx'' = -kx, \quad x(0) = x_0, \quad x'(0) = v_0 \]
 \[ x = x(t), \quad v = v(t) = x'(t), \quad a = a(t) = x''(t) \]
@@ -257,6 +250,68 @@ v(0) &= v_0
 
 The Flow Theorem will tell us there is a unique solution, for some time interval.
 
+\section{2/10/16: The Flow Theorem}
+
+\subsection{Application: $n^{\text{th}}$ order initial value problem (IVP)}
+\[
+\begin{cases}
+x &= x(t) \\
+x^{(n)} &= F(t,x,x',x'',\dots,x^{(n-1)}) \\
+x(t_0) &= x_{00} \\
+x'(t_0) &= x_{10} \\
+x''(t_0) &= x_{20} \\
+\vdots \\
+x^{(n-1)}(t_0) &= x_{(n-1)0}
+\end{cases}
+\]
+
+$f(t)x^{(n)} = F(t,x,x',x'',\dots,x^{(n-1)})$ is an $n^{\text{th}}$ order ODE in standard form. \\ \\
+A \textbf{singularity} (or singular point) of this equation is a value $t_0$ where $f(t_0) = 0$. At this point, the equation ceases to be of $n^{\text{th}}$ order. If $f(t)$ is of constant sign in the time interval on which we'd like to solve the equation, we just divide through by $f(t)$ to get our desired form (which is the regular case, as opposed to the singular case).
+
+Here, the Flow Theorem says that there is a unique solution $x = x(t)$ defined in some time interval $(t_0 - \varepsilon,t_0 + \varepsilon)$ where $\varepsilon > 0$.
+
+To apply this:
+
+\[
+\begin{cases}
+x_0(t) &= t \\
+x_1 &= x_1(t) = x(t) \\
+x_2 &= x_2(t) = x'(t) \\
+x_3 &= x_3(t) = x''(t) \\
+\vdots \\
+x_n &= x_n(t) = x^{(n-1)}(t) 
+\end{cases} \]
+becomes
+\[
+\begin{cases}
+x_0' &= 1 = F_0(x_0,x_1,x_2,\dots,x_n) \\
+x_1' &= x_2 = F_1(x_0,x_1,x_2,\dots,x_n) \\
+x_2' &= x_3 = F_2(x_0,x_1,x_2,\dots,x_n) \\
+x_3' &= x_4 = F_3(x_0,x_1,x_2,\dots,x_n) \\
+\vdots &\ \vdots \\
+x_{n-1}' &= x_n = F_{n-1}(x_0,x_1,x_2,\dots,x_n)\\
+x_n' &= F(t,x_1,x_2,\dots, x_n) = F_n(\dots) \\
+\end{cases}
+\quad \text{and} \quad
+\begin{cases}
+x_0(t_0) &= t_0 \\
+x_1(t_0) &= x_{00} \\
+x_2(t_0) &= x_{10} \\
+\vdots &\ \vdots \\
+x_n(t_0) &= x_{(n-1)0}
+\end{cases}
+\]
+
+This shows that we can recast an $n^{\text{th}}$ order IVP into an $n+1$ order system.
+
+However, for the Flow Theorem to apply, $\vec{F}$ needs to be $C^1$. Therefore, our hypothesis in the IVP is that $F$ is $C^1$, meaning that $\frac{\partial F}{\partial t}, \frac{\partial F}{\partial x}, \frac{\partial F}{\partial x'}, \dots$ are continuous.
+
+We will prove the Flow Theorem for two dimensions only; the proof can be extended to greater than two dimensions. \newpage
+
+
+\begin{proof}
+
+\end{proof}
 
 
 \end{document}
