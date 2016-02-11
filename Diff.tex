@@ -337,11 +337,31 @@ This is called the \textbf{Lipschitz Condition}.
 \item Also, note that $A$ and $B$ are continuous in $\mathcal{D}$ and so by the Extreme Value Theorem, we can find an upper bound $M$ for $|A|$ and $|B|$ on $\mathcal{D}$, i.e. \[ M = \max\left(\max_{(x,y) \in \mathcal{D}}|A(x,y)|, \max_{(x,y) \in \mathcal{D}}|B(x,y)|\right) \]
 
 \item The point $(p,q)$ is assumed to be interior to $\mathcal{D}$ (\underline{not} on the boundary). \\ \\
-We can therefore encase the point $(0,p)$ in a rectangle in the $tx$-plane defined by $R:[-r,r] \times [p-s,p+s] \subseteq \proj_{x}\mathcal{D}, r,s > 0$. Draw two lines with slopes $M$ and $-M$ through the point. We will consider the ``bowtie'' region formed by the intersections of the lines with the rectangle, joining them oppositely, and the lines themselves. Call the $x$-intersections $p-h$ and $p+h$. \\ \\
+We can therefore encase the point $(0,p)$ in a rectangle in the $tx$-plane defined by $R:[-r,r] \times [p-s,p+s] \subseteq \proj_{x}\mathcal{D}, r,s > 0$. Draw two lines with slopes $M$ and $-M$ through the point. We will consider the ``bowtie'' region formed by the intersections of the lines with the rectangle, joining them oppositely, and the lines themselves. Call the $x$-intersections $-h$ and $h$. \\ \\
 Define $h \coloneqq \min\left(r,\frac{s}{M}\right) > 0$. This is to formally define the bowtie region and consider the two possible pictures depending on the size of $M$. \\ \\
 Now, we want to construct the solution of the differential equation.
 
 Whoopsies, there was a screwup here, proof to be fixed in the future.
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis} [
+        scale only axis,
+        grid=major,
+        xlabel = $t$,
+        ylabel = $x$,
+      ]
+      \addplot[color=black,thick,fill=gray, fill opacity=0.5, smooth] coordinates {(-2,-3)(0,-4)(3,-2)(2,6)(0,10)(-2.5,6)(-3,0)(-2,-3)};
+      \addplot[color=black,thick,fill=green, fill opacity=0.5] coordinates {(-2,0)(2,0)(2,4)(-2,4)(-2,0)};
+      \addplot[color=black,thick,mark=*] coordinates {(0,2)};
+      \addplot[color=blue,domain=-2:2]{-6*x+2};
+      \addplot[color=blue,domain=-2:2]{6*x+2};
+      \addplot[color=black,thick,fill=red, fill opacity=0.7] coordinates {(1/3,0)(1/3,4)(0,2)(1/3,0)};
+      \addplot[color=black,thick,fill=red, fill opacity=0.7] coordinates {(-1/3,0)(-1/3,4)(0,2)(-1/3,0)};
+      \node at (axis cs:3,-4) {$\mathcal{D}$};
+    \end{axis}
+  \end{tikzpicture}
+\end{figure}
 
 \end{enumerate}
 
