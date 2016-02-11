@@ -306,10 +306,44 @@ This shows that we can recast an $n^{\text{th}}$ order IVP into an $n+1$ order s
 
 However, for the Flow Theorem to apply, $\vec{F}$ needs to be $C^1$. Therefore, our hypothesis in the IVP is that $F$ is $C^1$, meaning that $\frac{\partial F}{\partial t}, \frac{\partial F}{\partial x}, \frac{\partial F}{\partial x'}, \dots$ are continuous.
 
-We will prove the Flow Theorem for two dimensions only; the proof can be extended to greater than two dimensions. \newpage
-
-
+\section{2/11/16: Proof of the Flow Theorem}
+We will prove the Flow Theorem for two dimensions only; the proof can be extended to greater than two dimensions.
 \begin{proof}
+Let $\vec{F}(x,y) = (A(x,y),B(x,y))$ be a vector field. By hypothesis, $A$ and $B$ are defined on a closed, bounded region $\mathcal{D}$, and they are $C^1$ on $\mathcal{D}$. Then we need to solve the following equation:
+\[
+\begin{aligned}
+\pvec{x}' &= \vec{F}(\vec{x})\\
+\vec{x}(0) &= \vec{p} = \la p,q \ra
+\end{aligned}
+\]
+
+We need to see how fast $A(x,y)$ is changing.
+\begin{enumerate}
+\item \[ 
+\begin{aligned}
+|A(x_1,y_1) - A(x_2,y_2)| &= |A(x_1,y_1) - A(x_1,y_2) + A(x_1,y_2) - A(x_2,y_2)| \\
+\text{(Triangle Inequality)}\qquad  &\le |A(x_1,y_1) - A(x_1,y_2)| + |A(x_1,y_2) - A(x_2,y_2)| \\
+\text{(MVT)}\qquad &\le \left|\frac{\partial A}{\partial y}(x_1,y^*)(y_1 - y_2)\right| + \left|\frac{\partial A}{\partial x}(x^*,y_2)(x_1 - x_2)\right|\\
+\end{aligned}
+\]
+Take $K$ to be some upper bound for all the partial derivatives of $A$ and $B$ on $\mathcal{D}$.
+\[
+\left|\frac{\partial A}{\partial y}(x_1,y^*)(y_1 - y_2)\right| + \left|\frac{\partial A}{\partial x}(x^*,y_2)(x_1 - x_2)\right| \le K(|x_1-x_2| + |y_1 - y_2|) \\
+\]
+Similarly:
+\[ |B(x_1,y_2) - B(x_2,y_2)| \le K(|x_1-x_2|+|y_1-y_2|) \]
+This is called the \textbf{Lipschitz Condition}.
+
+\item Also, note that $A$ and $B$ are continuous in $\mathcal{D}$ and so by the Extreme Value Theorem, we can find an upper bound $M$ for $|A|$ and $|B|$ on $\mathcal{D}$, i.e. \[ M = \max\left(\max_{(x,y) \in \mathcal{D}}|A(x,y)|, \max_{(x,y) \in \mathcal{D}}|B(x,y)|\right) \]
+
+\item The point $(p,q)$ is assumed to be interior to $\mathcal{D}$ (\underline{not} on the boundary). \\ \\
+We can therefore encase the point $(0,p)$ in a rectangle in the $tx$-plane defined by $R:[-r,r] \times [p-s,p+s] \subseteq \proj_{x}\mathcal{D}, r,s > 0$. Draw two lines with slopes $M$ and $-M$ through the point. We will consider the ``bowtie'' region formed by the intersections of the lines with the rectangle, joining them oppositely, and the lines themselves. Call the $x$-intersections $p-h$ and $p+h$. \\ \\
+Define $h \coloneqq \min\left(r,\frac{s}{M}\right) > 0$. This is to formally define the bowtie region and consider the two possible pictures depending on the size of $M$. \\ \\
+Now, we want to construct the solution of the differential equation.
+
+Whoopsies, there was a screwup here, proof to be fixed in the future.
+
+\end{enumerate}
 
 \end{proof}
 
