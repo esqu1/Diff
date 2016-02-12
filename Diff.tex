@@ -339,7 +339,7 @@ This is called the \textbf{Lipschitz Condition}.
 \item The point $(p,q)$ is assumed to be interior to $\mathcal{D}$ (\underline{not} on the boundary). \\ \\
 We can therefore encase the point $(0,p)$ in a rectangle in the $tx$-plane defined by $R:[-r,r] \times [p-s,p+s] \subseteq \proj_{x}\mathcal{D}, r,s > 0$. Draw two lines with slopes $M$ and $-M$ through the point. We will consider the ``bowtie'' region formed by the intersections of the lines with the rectangle, joining them oppositely, and the lines themselves. Call the $x$-intersections $-h$ and $h$. \\ \\
 Define $h \coloneqq \min\left(r,\frac{s}{M}\right) > 0$. This is to formally define the bowtie region and consider the two possible pictures depending on the size of $M$. \\ \\
-Now, we want to construct the solution of the differential equation. 
+Now, we want to construct the solution of the differential equation within the bowtie region. 
 
 Whoopsies, there was a screwup here, proof to be fixed in the future.
 \begin{figure}[h!]
@@ -367,6 +367,55 @@ Whoopsies, there was a screwup here, proof to be fixed in the future.
 \end{enumerate}
 
 \end{proof}
+
+\section{2/12/16: Separable and First-Order Linear Equations}
+
+\subsection{Multiplicatively Separable Functions}
+\[ F(t,x) = f(t)g(x) \]
+A non-example of a separable function is $F(t,x) = t^2 + x^2$. An example is $F(t,x) = t^2x^3$. \\ \\ 
+For our purposes, we will work with first-order ODE's with scalar functions.
+
+\subsection{Separable ODE}
+\[ \boxed{x' = f(t)g(x)} \]
+
+There are other ways we can write this equation:
+\begin{itemize}
+\item \textbf{General Form}: $G(t,x,x') = 0$
+\item \textbf{Standard Form}: $\phi(t)x' = F(t,x)$
+\begin{itemize}
+\item \textbf{Regular Case}: $x' = F(t,x)$, $F$ is the ``slope function''
+\item \textbf{Singular Case}: This is when we solve in an interval $(t_0 - \delta, t_0 + \delta)$ where $\delta > 0$ and $\phi(t_0) = 0$.
+\end{itemize}
+\end{itemize}
+
+To solve this type of equation:
+\[
+\begin{aligned}
+x'(t) &\equiv f(t)g(x(t)) \\
+\frac{x'(t)}{g(x(t))} &= f(t) \\
+\int_a^t \frac{x'(\tau)}{g(x(\tau))} \ d\tau &= \int_a^t f(\tau) \ d\tau \\
+\end{aligned}
+\]
+Letting $u = x(\tau)$ and $du = x'(\tau) \ d\tau$:
+
+\[
+\begin{aligned}
+\underbrace{\int_{x(a)}^{x(t)}\frac{du}{g(u)}}_{G(x(t))} &= \underbrace{\int_a^t f(\tau) \ d\tau}_{F(t)} \\
+\Aboxed{G(x(t)) &= F(t) + C}
+\end{aligned}
+\]
+
+\subsection{Example}
+\[ 
+\begin{aligned}
+x' &= t^2x^3 \\
+\frac{x'}{x^3} &= t^2 \\
+\int \frac{dx}{x^3} &= \int t^2 \ dt + C \\
+\frac{x^{-2}}{-2} &= \frac{t^3}{3} + C \\
+x^{-2} &= C - \frac{2}{3}t^3 \\
+x &= \pm \dfrac{1}{\sqrt{C - \frac{2}{3}t^3}}
+\end{aligned}
+\]
 
 
 \end{document}
