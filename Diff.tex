@@ -401,7 +401,7 @@ Letting $u = x(\tau)$ and $du = x'(\tau) \ d\tau$:
 \[
 \begin{aligned}
 \underbrace{\int_{x(a)}^{x(t)}\frac{du}{g(u)}}_{G(x(t))} &= \underbrace{\int_a^t f(\tau) \ d\tau}_{F(t)} \\
-\Aboxed{G(x(t)) &= F(t) + C}
+\Aboxed{G(x(t)) &= F(t)}
 \end{aligned}
 \]
 
@@ -417,5 +417,34 @@ x &= \pm \dfrac{1}{\sqrt{C - \frac{2}{3}t^3}}
 \end{aligned}
 \]
 
+\section{2/22/16: Separable Equations, First-Order Linear Equations; Uniqueness for $C^1$ IVP's}
+
+Recall our form for the separable equation:
+\[ x' = f(t)g(x) \]
+Assume $f$ and $g$ are continuous on their respective domains, $f$ on $I = (t_0 - a,t_0 + a), a>0$, $g$ on $J = (x_0 - b,x_0 + b), b>0$. Let $\mathcal{R} = I \times J$. If we also have $x(t_0) = x_0$, then we have an IVP (initial value problem) on our hands.
+
+But the problem is, $\frac{1}{g(x)}$ isn't necessarily continuous. \\ \\
+
+Separately, solve the algebraic equation $g(x) = 0$ in the interval $J$. Assume for simplicity that the roots of $g$ are isolated and $C^{\infty}$ (``smooth''). Then, we can partition $J$ into open subintervals $J_1,J_2,\dots,J_n$, i.e. \[J = \{a,b,c,d\}\cup J_1\cup J_2\cup \dots \cup J_n\]
+
+\section{2/23/16: Uniqueness for $C^1$ IVP's}
+\[ x' = f(t)g(x) \qquad x = x(t) \]
+\[ x' \equiv f(t)g(x(t)) \text{ for all } t \in I \]
+Assume: $f,g$ have continuous derivatives on their respective domains. Then, all solutions are given as follows: Suppose $g(x)$ has domain $J$. If $a$ and $b$ are consecutive isolated roots of $g$, we can solve on $(a,b)$ as we did yesterday: \[ \underbrace{\int_c^{x(t)}\frac{1}{g(u)} \ du}_{G_c(x(t))} = \underbrace{\int_{t_0}^t f(\tau) \ d\tau}_{F(t)} \qquad \text{where } c \in (a,b) \text{ is arbitrary} \]
+\begin{tikzpicture}[scale=0.9]
+  \begin{axis}[
+      axis lines=middle,clip=false,ticks=none,
+      xlabel=$x$,ylabel=$y$,
+      xmin=-3,ymin=-3,xmax=10,ymax=10,
+    ]
+    \addplot[smooth] coordinates {(0.5,9)(1,5)(2,2)(3,-2)(4,-1)(4.5,3)};
+  \end{axis}
+\end{tikzpicture}  % FIX THIS LATER
+
+If $a$ is a root of $g$ (isolated or not) then claim: $x(t) \equiv a$ for $t \in \mathbb{R}$ is a solution of the differential equation.
+
+\subsection{Uniqueness} 
+Are these all the solutions, however? \\ \\
+A first-order IVP in standard form (the regular case): \[ x' = F(t,x) \]
 
 \end{document}
