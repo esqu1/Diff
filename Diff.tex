@@ -445,6 +445,24 @@ If $a$ is a root of $g$ (isolated or not) then claim: $x(t) \equiv a$ for $t \in
 
 \subsection{Uniqueness} 
 Are these all the solutions, however? \\ \\
-A first-order IVP in standard form (the regular case): \[ x' = F(t,x) \]
+A first-order IVP in standard form (the regular case): \[ x' = \underbrace{F(t,x)}_{\text{slope function}}, \qquad x(t_0) = x_0 \]
+\underline{Assumption}: $F$ is a $C^1$ function ($\frac{\partial F}{\partial t}$ and $\frac{\partial F}{\partial x}$ are both continuous) on a rectangle centered at the initial point $(t_0,x_0)$. Then, we have the following theorem:
+\begin{theorem}
+If $\phi(t)$ and $\psi(t)$ are solutions of the IVP, defined on respective domains $I_{\delta} = (t_0 - \delta,t_0 + \delta)$ and $I_{\epsilon} = (t_0 - \epsilon,t_0 + \epsilon)$ where $\delta > 0$ and $\epsilon > 0$, then \[ \phi(t) \equiv \psi(t) \] for all $t \in I_{\eta} = (t_0 - \eta, t_0 + \eta)$ where $\eta > 0$.
+\end{theorem}
+\begin{tikzpicture}[scale=0.9]
+  \begin{axis}[
+      axis lines=middle,clip=false,ticks=none,
+      xlabel=$x$,ylabel=$y$,
+      xmin=0,ymin=0,xmax=10,ymax=10,
+    ]
+    \addplot[smooth] coordinates {(1,1)(2,1.5)(3,3)(4,4.5)(5,6)(7,6)};
+    \addplot[smooth] coordinates {(1,5)(2,2)(3,3)(4,4.5)(5,7)(7,8)};
+    \draw[dashed] (axis cs:3,3) -- (axis cs:3,0);
+    \draw[dashed] (axis cs:4,4.5) -- (axis cs:4,0);
+  \end{axis}
+\end{tikzpicture} \\
+Basic outline for the proof: \[ \text{IVP} \qquad x'(t) \equiv F(t,x(t)), \qquad x(t_0) = x_0 \]
+\[ x(t) - x(t_0) = \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
 
 \end{document}
