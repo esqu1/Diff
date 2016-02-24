@@ -448,21 +448,86 @@ Are these all the solutions, however? \\ \\
 A first-order IVP in standard form (the regular case): \[ x' = \underbrace{F(t,x)}_{\text{slope function}}, \qquad x(t_0) = x_0 \]
 \underline{Assumption}: $F$ is a $C^1$ function ($\frac{\partial F}{\partial t}$ and $\frac{\partial F}{\partial x}$ are both continuous) on a rectangle centered at the initial point $(t_0,x_0)$. Then, we have the following theorem:
 \begin{theorem}
-If $\phi(t)$ and $\psi(t)$ are solutions of the IVP, defined on respective domains $I_{\delta} = (t_0 - \delta,t_0 + \delta)$ and $I_{\epsilon} = (t_0 - \epsilon,t_0 + \epsilon)$ where $\delta > 0$ and $\epsilon > 0$, then \[ \phi(t) \equiv \psi(t) \] for all $t \in I_{\eta} = (t_0 - \eta, t_0 + \eta)$ where $\eta > 0$.
+If $\phi(t)$ and $\psi(t)$ are solutions of the IVP, defined on respective domains $I_{\delta} = (t_0 - \delta,t_0 + \delta)$ and $I_{\varepsilon} = (t_0 - \varepsilon,t_0 + \varepsilon)$ where $\delta > 0$ and $\varepsilon > 0$, then \[ \phi(t) \equiv \psi(t) \] for all $t \in I_{\eta} = (t_0 - \eta, t_0 + \eta)$ where $\eta > 0$.
 \end{theorem}
 \begin{tikzpicture}[scale=0.9]
   \begin{axis}[
-      axis lines=middle,clip=false,ticks=none,
+      axis lines=left,clip=false,ticks=none,
       xlabel=$x$,ylabel=$y$,
       xmin=0,ymin=0,xmax=10,ymax=10,
     ]
-    \addplot[smooth] coordinates {(1,1)(2,1.5)(3,3)(4,4.5)(5,6)(7,6)};
-    \addplot[smooth] coordinates {(1,5)(2,2)(3,3)(4,4.5)(5,7)(7,8)};
+    \addplot[color=black,thick,fill=green, fill opacity=0.5] coordinates{(0.5,0.5)(8,0.5)(8,9)(0.5,9)(0.5,0.5)};
+    \addplot[color=red,smooth] coordinates {(1,1)(2,1.5)(3,3)(4,4.5)(5,6)(7,6)};
+    \addplot[color=blue,smooth] coordinates {(1,5)(2,2)(3,3)(4,4.5)(5,7)(7,8)};
     \draw[dashed] (axis cs:3,3) -- (axis cs:3,0);
     \draw[dashed] (axis cs:4,4.5) -- (axis cs:4,0);
+    %\node[below] at (axis cs:3,0) {
   \end{axis}
 \end{tikzpicture} \\
 Basic outline for the proof: \[ \text{IVP} \qquad x'(t) \equiv F(t,x(t)), \qquad x(t_0) = x_0 \]
 \[ x(t) - x(t_0) = \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
+
+\section{2/24/16: Uniqueness \& Existence for $C^1$ IVP's}
+\subsection{Autonomous Equations and the Time Shift Property}
+\[
+\begin{cases}
+x' = \sqrt{|x|} \qquad \text{(autonomous -- the independent variable makes no explicit appearance)} \\
+x(0) = 0
+\end{cases}
+\]
+
+One important property of an autonomous differential equation is that it is time-indepedent, i.e. if $x = \phi(t)$ is a solution, then so is $x = \psi(t) \coloneqq \phi(t+c)$. Without an initial condition, we have an infinite number of solutions. 
+
+Let us try separation of variables:
+\[ 
+\begin{aligned}
+\int_0^{x(t)} \frac{dx}{\sqrt{|x|}} &= \int_0^t d\tau = t \\
+\lim_{\varepsilon \to 0^+}\int_{\varepsilon}^{x(t)} u^{-\frac{1}{2}} \ du &= \lim_{\varepsilon \to 0^+}\left[2u^{\frac{1}{2}}\right]_{\varepsilon}^{x(t)} \\
+&= 2\sqrt{x(t)} - \lim_{\varepsilon \to 0^+}{\sqrt{\varepsilon}} \\
+&= 2\sqrt{x(t)} \\
+x(t) &= \frac{t^2}{4} > 0 \quad \text{(assuming $t \ge 0)$}
+\end{aligned}
+\]
+We can similarly derive, for $t \le 0$, that $x(t) = -\frac{t^2}{4}$. We can then construct our function:
+\[ x(t) = 
+\begin{cases}
+\frac{t^2}{4}, \quad t \ge 0 \\
+-\frac{t^2}{4}, \quad t < 0
+\end{cases}
+\]
+\subsection{Unique Solutions}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \begin{axis}[
+      axis lines=left,clip=false,ticks=none,
+      xlabel=$x$,ylabel=$y$,
+      xmin=0,ymin=0,xmax=10,ymax=10,
+    ]
+    \addplot[color=black,thick,fill=green, fill opacity=0.5] coordinates{(0.5,0.5)(8,0.5)(8,9)(0.5,9)(0.5,0.5)};
+    \addplot[color=red,smooth] coordinates {(1,1)(2,1.5)(3,3)(4,4.5)(5,6)(7,6)};
+    \addplot[color=blue,smooth] coordinates {(1,5)(2,2)(3,3)(4,4.5)(5,7)(7,8)};
+    \draw[dashed] (axis cs:3,3) -- (axis cs:3,0);
+    \draw[dashed] (axis cs:4,4.5) -- (axis cs:4,0);
+    %\node[below] at (axis cs:3,0) {
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{proof}
+\[
+\boxed{
+\begin{cases}
+x'(t) \equiv F(t,x(t)) \\
+x(t_0) = x_0
+\end{cases}}
+\]
+\[
+\begin{aligned}
+x'(\tau) &\equiv F(\tau,x(\tau)) \\
+\int_{t_0}^tx'(\tau) \ d\tau &= \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \\
+\Aboxed{x(t) &= x_0 + \int_{t_0}^tF(\tau,x(\tau)) \ d\tau, \quad \text{$x(t)$ is continuous}}
+\end{aligned}
+\]
+We have just proved one direction of equivalence. To prove the other direction, note that $x(t)$ is differentiable, since all of its parts are continuous and differentiable.
+\end{proof}
 
 \end{document}
