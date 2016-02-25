@@ -450,20 +450,6 @@ A first-order IVP in standard form (the regular case): \[ x' = \underbrace{F(t,x
 \begin{theorem}
 If $\phi(t)$ and $\psi(t)$ are solutions of the IVP, defined on respective domains $I_{\delta} = (t_0 - \delta,t_0 + \delta)$ and $I_{\varepsilon} = (t_0 - \varepsilon,t_0 + \varepsilon)$ where $\delta > 0$ and $\varepsilon > 0$, then \[ \phi(t) \equiv \psi(t) \] for all $t \in I_{\eta} = (t_0 - \eta, t_0 + \eta)$ where $\eta > 0$.
 \end{theorem}
-\begin{tikzpicture}[scale=0.9]
-  \begin{axis}[
-      axis lines=left,clip=false,ticks=none,
-      xlabel=$x$,ylabel=$y$,
-      xmin=0,ymin=0,xmax=10,ymax=10,
-    ]
-    \addplot[color=black,thick,fill=green, fill opacity=0.5] coordinates{(0.5,0.5)(8,0.5)(8,9)(0.5,9)(0.5,0.5)};
-    \addplot[color=red,smooth] coordinates {(1,1)(2,1.5)(3,3)(4,4.5)(5,6)(7,6)};
-    \addplot[color=blue,smooth] coordinates {(1,5)(2,2)(3,3)(4,4.5)(5,7)(7,8)};
-    \draw[dashed] (axis cs:3,3) -- (axis cs:3,0);
-    \draw[dashed] (axis cs:4,4.5) -- (axis cs:4,0);
-    %\node[below] at (axis cs:3,0) {
-  \end{axis}
-\end{tikzpicture} \\
 Basic outline for the proof: \[ \text{IVP} \qquad x'(t) \equiv F(t,x(t)), \qquad x(t_0) = x_0 \]
 \[ x(t) - x(t_0) = \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
 
@@ -513,6 +499,7 @@ We can similarly derive, for $t \le 0$, that $x(t) = -\frac{t^2}{4}$. We can the
 \end{tikzpicture}
 \end{center}
 \begin{proof}
+We begin by showing that our IVP is actually an integral equation.
 \[
 \boxed{
 \begin{cases}
@@ -529,5 +516,46 @@ x'(\tau) &\equiv F(\tau,x(\tau)) \\
 \]
 We have just proved one direction of equivalence. To prove the other direction, note that $x(t)$ is differentiable, since all of its parts are continuous and differentiable.
 \end{proof}
+
+\section{2/25/16: Uniqueness/Existence for $C^1$ IVP's}
+We're assuming: for $\delta > 0$, $\varepsilon > 0$:
+\[ \phi: I_{\delta} \coloneqq (t_0 - \delta, t_0 + \delta) \to \mathbb{R} \text{ satisfies } \phi'(t) \equiv F(t,\phi(t)), \phi(t_0) = x_0 \]
+\[ \psi: I_{\varepsilon} \coloneqq (t_0 - \varepsilon, t_0 + \varepsilon) \to \mathbb{R} \text{ satisfies } \psi'(t) \equiv F(t,\psi(t)), \psi(t_0) = x_0 \]
+We want to show that for some $\eta > 0$, $\phi(t) \equiv \psi(t)$ on $I_{\eta} \coloneqq (t_0 - \eta,t_0 + \eta)$. 
+
+First, we introduce the following concept:
+\begin{definition}
+If $f$ is a bounded real-valued function on a set $\mathcal{S}$, then its \textbf{sup-norm} is defined as: 
+\[ \|f\|_{\mathcal{S}} \coloneqq \sup_{x \in \mathcal{S}}|f(x)| \]
+If $\mathcal{S}$ is a closed, bounded subset of $\mathbb{R}^n$, and $f$ is continuous, then $\norm{f}_{\mathcal{S}} = \displaystyle\max_{x \in \mathcal{S}}|f(x)|$ , in which case is called the \textbf{max-norm}.
+\end{definition}
+
+Note that:
+\begin{itemize}
+\item $\norm{f}_{\mathcal{S}} \ge 0$
+\item $\norm{f}_{\mathcal{S}} = 0$ iff $f(x) \equiv 0$ for all $x \in \mathcal{S}$
+\item $\norm{\alpha f}_{\mathcal{S}} = |\alpha|\norm{f}_{\mathcal{S}}$
+\item $\norm{f + g}_{\mathcal{S}} \le \norm{f}_{\mathcal{S}} + \norm{g}_{\mathcal{S}}$ where $f$ and $g$ are defined and bounded on $\mathcal{S}$.
+\end{itemize}
+
+We claim that $\norm{\phi - \psi}_{I_{\eta}} \le c \norm{\phi - \psi}_{I_{\eta}}$, where $0 < c < 1$. This would mean that $\norm{\phi - \psi}_{I_{\eta}} = 0$, then $\phi(t) - \psi(t) \equiv 0$ on $I_{\eta}$ and $\phi(t) = \psi(t)$ on $I_{\eta}$.
+
+\begin{proof}
+Note that \[ \phi(t) \equiv x_0 + \int_{t_0}^tF(\tau, \phi(\tau)) \ d\tau \] for all $t \in I_{\delta}$ and \[ \psi(t) \equiv x_0 + \int_{t_0}^t F(\tau,\psi(\tau)) \ d\tau \] for all $t \in I_{\varepsilon}$. Both of these equation are true for all $t \in I_{\min(\delta,\varepsilon)}$.
+
+Restrict $t \in I_{\eta}$ where $0 \le \eta \le \min(\delta,\varepsilon)$. Subtracting these two equations:
+\[ 
+\begin{aligned}
+|\phi(t) - \psi(t)| &= \left| \int_{t_0}^t[F(\tau,\phi(\tau)) - F(\tau,\psi(\tau))] \ d\tau \right| \\
+&\le \left| \int_{t_0}^t|F(\tau,\phi(\tau)) - F(\tau,\psi(\tau))| \ d\tau\right| \\
+\text{(MVT)} \qquad &\le \left| \int_{t_0}^t\underbrace{\left|\frac{\partial F}{\partial x}(x,\theta(\tau))\right|}_{\le M}\left|\phi(t) - \psi(t)\right| \ d\tau \right| \\
+&\le M\left|\int_{t_0}^t\underbrace{|\phi(\tau) - \psi(\tau)|}_{\le \norm{\phi - \psi}_{I_{\eta}}} \ d\tau \right| \\
+&\le M\norm{\phi - \psi}(t-t_0) \le M\eta\norm{\phi - \psi}_{I_{\eta}}
+\end{aligned}
+\]
+
+Now we simply pick $\eta$ such that $M\eta = c < 1$, and we are done. 
+\end{proof}
+
 
 \end{document}
