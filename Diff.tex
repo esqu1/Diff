@@ -557,5 +557,65 @@ Restrict $t \in I_{\eta}$ where $0 \le \eta \le \min(\delta,\varepsilon)$. Subtr
 Now we simply pick $\eta$ such that $M\eta = c < 1$, and we are done. 
 \end{proof}
 
+\section{2/26/16: Existence}
+\subsection{Transforming to an Integral Equation}
+Yesterday we proved the uniqueness of the solution of an IVP. Now we must prove the existence. 
 
+\[
+\begin{cases}
+x' = F(t,x), \qquad x = x(t) \text{ is the unknown function} \\
+x(t_0) = x_0
+\end{cases}
+\]
+$C^1$ IVP $\Leftrightarrow$ $F(t,x)$ is $C^1$ in some rectangle $\mathcal{R}$ centered at $(x_0,y_0)$.
+
+Let us integrate our equation:
+\[ 
+\begin{aligned}
+\int_{t_0}^t x'(\tau) \ d\tau &= \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \\
+x(t) - x(t_0) = x(t) - x_0 &= \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \\
+\end{aligned}
+\]
+
+So now our problem/equation becomes:
+\begin{itemize}
+\item $x(t) \equiv x_0 + \displaystyle\int_{t_0}^t F(\tau,x(\tau)) d\tau$
+\item $x(t)$ is a continuous function of $t$
+\end{itemize}
+Why do we need the continuity condition? If $x(t)$ is a solution, then it is differentiable, which implies it is continuous. 
+
+Now we prove the opposite direction. To prove that $x(t)$ is differentiable, note that $f(t) = x_0$ is differentiable, and the integral is also differentiable (since its derivative is $F(t,x(t))$, which is continuous. Therefore, by algebra, the two statements are equivalent.
+
+\subsection{Picard's Method}
+
+Define \[ x_{n+1}(t) \coloneqq x_0 + \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \]
+and
+\[ x_0(t) :\equiv x_0 \quad \text{for all } t \]
+
+In this section, we prove that for each $t \in I_{\eta}$, $\displaystyle\lim_{n \to \infty}x_n(t)$ exists, let's call it $x(t)$, and moreover: 
+\begin{itemize}
+\item $x(t)$ is a continuous function of $t$ on $I_{\eta}$
+\item $x(t) \equiv x_0 + \displaystyle\int_{t_0}^t F(\tau, x(\tau)) \ d\tau$
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \begin{axis}[
+      axis lines=left,clip=false,ticks=none,
+      xlabel=$t$,ylabel=$x$,
+      xmin=0,ymin=0,xmax=10,ymax=10,
+    ]
+    \addplot[color=black,thick,fill=green, fill opacity=0.5] coordinates{(0.5,2.5)(8,2.5)(8,7)(0.5,7)(0.5,2.5)};
+    \addplot[color=black,thick,mark=*] coordinates {(4.25,4.75)};
+    \draw[dashed] (axis cs: 4.25,4.75) -- (axis cs: 4.25,0);
+    \draw[dashed] (axis cs: 4.25,4.75) -- (axis cs: 0,4.75);
+    \node[below] at (axis cs:4.25,0) {$t_0$};
+    \node[left] at (axis cs: 0,4.75) {$x_0$};
+    \addplot[color=black,domain=3:5.5]{2*x-3.75};% draw lines of slopes M and -M through the point
+    
+    % yeah fix this fast please yeah
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+Define $M = \sup_{(t,x) \in \mathcal{R}}|F(t,x)|$ (existence follows from EVT). Let $\eta \coloneqq \min(a,\frac{b}{M}) > 0$. Assume $M>0$; if $M=0$, then the IVP is $x' \equiv 0$, $x(t_0) = x_0$ has a solution: $x(t) \equiv x_0$ for all $t \in (t_0 - a,t_0 + a)$.
 \end{document}
