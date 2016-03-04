@@ -682,5 +682,69 @@ Each $x_n$ is well-defined and continuous and satisfies $|x_n(t) - x_0| \le b$ f
 The base case is trivial. Now assume true for $x_n(t)$; we now prove for $x_{n+1}(t)$. By assumption, the integrand $F(\tau,x_n(\tau))$ is well-defined and continuous (and therefore Riemann integrable on $I_{\eta}$) for all $t \in I_{\eta}$, which means the integral is well-defined. Therefore, $x_{n+1}(t)$ is well-defined for all $t \in I_{\eta}$.
 
 Also, $x_{n+1}(t)$ is continuous on $I_{\eta}$ by similar reasoning. 
+
+Now, we investigate $|x_{n+1}(t) - x_0$. First, we claim that $(\tau, x_n(\tau)) \in \mathcal{R}$ for any $\tau$ between $t_0$ and $t$. But \[ |\tau - t_0| \le |t-t_0| \le \eta \le a\]
+\[ |x_n(\tau) - x_0| \le b \]
+
+\[
+\begin{aligned}
+|x_{n+1}(t) - x_0| &= \left|\int_{t_0}^tF(\tau,x_n(\tau)) \ d\tau \right| \\
+&\le \left|\int_{t_0}^t\underbrace{|F(\tau,x_n(\tau))|}_{\le M} \ d\tau \right| \\
+&\le M|t-t_0| \le M\eta \le b
+\end{aligned}
+\]
+
 \end{proof}
+
+\section{3/1/16: Finish Picard's Existence Proof}
+
+\begin{theorem}
+\[ |x_{n+1}(t) - x_n(t)| \le \frac{MK^{n}}{(n+1)!}|t-t_0|^{n+1} \]
+for any $n \ge 0$ and any $t \in I_{\eta}$, where $K \ge \displaystyle\max_{(t,x) \in \mathcal{R}}\left|\frac{\partial F}{\partial x}(t,x)\right|$ (using the assumed $C^1$-ness of $F$ on $\mathcal{R}$).
+\end{theorem}
+
+\begin{proof}
+We prove by induction. When $n=0$:
+\[ |x_1(t) - x_0(t)| = |x_1(t) - x_0| = \left|\int_{t_0}^tF(\tau,x_0) \ d\tau\right| \le M|t-t_0| = \frac{MK^0}{(0+1)!}|t-t_0|^{0+1} \]
+Now assume the hypothesis, we want to prove that \[ |x_{n+2}(t) - x_{n+1}(t)| = \]
+\end{proof}
+
+\section{3/3/16}
+Yeah I'll fill this in later.
+
+\section{3/4/16: Existence of Solutions, Continued}
+The last thing we proved was that $(x_n)$ is a \underline{Cauchy sequence} in the space of continuous functions on $I_{\eta}$, denoted $C^0(I_{\eta})$, under the sup-norm, $\norm{f}_{I_{\eta}} = \displaystyle\sup_{t \in I_{\eta}}|f(t)|$. This means: $\displaystyle\lim_{n \to \infty} \norm{x_{n+p(n)} - x_n}_{I_{\eta}} = 0$ for any $\mathbb{N}$-valued function $p(n)$.
+
+\subsection{Metric Spaces}
+\begin{definition}
+A \textbf{metric space}, denoted $(\mathscr{X},d)$, $\mathscr{X}\neq \emptyset$, $d$ is a ``distance'' function, must satisfy the following:
+\begin{enumerate}
+\item $d:(\mathscr{X}\times \mathscr{X}) \to [0,\infty)$
+\item $d(x,y) \ge 0$ and $d(x,y) = 0 \Leftrightarrow x=y$
+\item $d(x,y) = d(y,x)$
+\item $d(x,y) + d(y,z) \ge d(x,z)$
+\end{enumerate}
+\end{definition}
+
+If we have a metric $d$ on a vector space $\mathcal{V}$, we can also require $d(x,y) + d(y,z) = d(x,z)$ iff $x\text{-}y\text{-}z$ ($y$ is between $x$ and $z$) or $x=y$ or $y=z$. To define betweenness: $\vec{p}\text{-}\vec{q}\text{-}\vec{r}$ iff $\vec{q} = (1-t)\vec{p} + t\vec{r}$. \\ \\
+Here, we define a metric on a vector space. Given a vector space $\mathcal{V}$, a \textbf{norm} on $\mathcal{V}$ is a real-valued function $\norm{\cdot}$ such that:
+\begin{enumerate}
+\item $\norm{\vec{v}} \ge 0$ and $\norm{\vec{v}} = 0 \Leftrightarrow \vec{v} = \vec{0}$ (Positive definiteness)
+\item $\norm{c\vec{v}} = |c|\norm{\vec{v}}$ (Absolute homogeneity)
+\item $\norm{\vec{v} + \vec{w}} \le \norm{\vec{v}} + \norm{\vec{w}}$ (Triangle inequality)
+\end{enumerate}
+This way, we can define \[ d(\vec{v},\vec{w}) \coloneqq \norm{\vec{v} - \vec{w}} \]
+
+\subsection{Cauchy Sequences in Metric Spaces}
+In a metric space $(\mathscr{X},d)$, a sequence of elements $(x_n)$ converges to $x \in \mathscr{X}$ if $d(x_n,x) \to 0$ as $n \to \infty$. \\
+
+A sequence $(x_n)$ in $(\mathscr{X},d)$ is called \underline{Cauchy} if $d(x_n,x_m) \to 0$ as $\min(n,m) \to \infty$.
+
+Not all Cauchy sequences converge. As an example, take \[ \mathscr{X} = \mathbb{Q}, d(q,\tilde{q}) = |q- \tilde{q}| \]
+Take the sequence $(3,3.1,3.14,3.141,\cdots)$. This sequence is Cauchy since choosing two far-out values will differ very little. However, it converges to $\pi$, which is not in the metric space. Therefore, we call this an \textbf{incomplete metric space}.
+
+\begin{theorem}
+$(\mathbb{R}, |\cdot - \cdot |)$ is a \textbf{complete metric space}, i.e. every Cauchy sequence of real numbers converges to a real limit.
+\end{theorem}
+
 \end{document}
