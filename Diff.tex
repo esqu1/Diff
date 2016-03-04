@@ -706,11 +706,38 @@ for any $n \ge 0$ and any $t \in I_{\eta}$, where $K \ge \displaystyle\max_{(t,x
 \begin{proof}
 We prove by induction. When $n=0$:
 \[ |x_1(t) - x_0(t)| = |x_1(t) - x_0| = \left|\int_{t_0}^tF(\tau,x_0) \ d\tau\right| \le M|t-t_0| = \frac{MK^0}{(0+1)!}|t-t_0|^{0+1} \]
-Now assume the hypothesis, we want to prove that \[ |x_{n+2}(t) - x_{n+1}(t)| = \]
+Now assume the hypothesis, we want to prove that \[ |x_{n+2}(t) - x_{n+1}(t)| \le \frac{MK^{n+1}}{(n+2)!}|t-t_0|^{n+2} \]
+So:
+\[
+\begin{aligned}
+|x_{n+2}(t) - x_{n+1}(t)| &= \left|\int_{t_0}^tF(\tau,x_{n+1}) - F(\tau,x_n) \ d\tau \right| \\
+\text{(MVT, for some } y_n \in [x_n,x_{n+1}]) \qquad &= \left|\int_{t_0}^t\frac{\partial F}{\partial x}(\tau,y_n)(x_{n+1} - x_n) \ d\tau \right| \\
+&\le \left|\int_{t_0}^t\left|\frac{\partial F}{\partial x}(\tau,y_n)\right||(x_{n+1} - x_n)| \ d\tau \right|\\
+&\le K\left|\int_{t_0}^t|x_{n+1} - x_n|\ d\tau \right| \\
+&\le K\left|\int_{t_0}^t\frac{MK^{n}}{(n+1)!}|t-t_0|^{n+1} \ d\tau\right| \\
+&= \frac{MK^{n+1}}{(n+2)!}|t-t_0|^{n+2} 
+\end{aligned}
+\]
 \end{proof}
 
 \section{3/3/16}
-Yeah I'll fill this in later.
+
+For any $t \in I_{\eta}$, \[ |x_{n+p}(t) - x_n(t)| = |x_{n+p}(t) - x_{n+p-1}(t) + x_{n+p-1}(t) - x_{n+p-2}(t) + x_{n+p-2}(t) - \cdots - x_n(t) \] is bounded. By the Triangle Inequality,
+\[
+\begin{aligned}
+|x_{n+p}(t) - x_n(t)| &\le \sum_{j=n}^{n+p-1}|x_{j+1}(t) - x_j(t)| \\
+&\le \sum_{j=n}^{n+p-1} \frac{MK^j}{(j+1)!}|t-t_0|^{j+1} \\
+&= \left(\frac{M}{K}\right) \sum_{j=n}^{n+p-1}\frac{(K|t-t_0|)^{j+1}}{(j+1)!} \\
+&\le \left(\frac{M}{K}\right) \sum_{j=n}^{\infty}\frac{(K|t-t_0|)^{j+1}}{(j+1)!}\\
+&\le \left(\frac{M}{K}\right) \sum_{j=n}^{\infty}\frac{(K\eta)^{j+1}}{(j+1)!}\\
+&= \left(\frac{M}{K}\right)\left(e^{k\eta} - \sum_{j=0}^{n-1}\frac{(k\eta)^{j+1}}{(j+1)!} \right)
+\end{aligned}
+\]
+
+Thus, we have an upper bound for any two terms in our sequence.
+
+Now if we take $\norm{x_{n+p} - x_n}_{I_{\eta}} = \displaystyle\sup_{t\in I_{\eta}}|x_{n+p}(t) - x_n(t)| \le L$, then send $n \to \infty$. Then, \[ \lim_{n \to \infty}\norm{x_{n+p(n)} - x_n}_{I_{\eta}} \le 0 \]
+But this is also nonnegative, so it must be the case that the limit is zero, and thus this sequence is Cauchy.
 
 \section{3/4/16: Existence of Solutions, Continued}
 The last thing we proved was that $(x_n)$ is a \underline{Cauchy sequence} in the space of continuous functions on $I_{\eta}$, denoted $C^0(I_{\eta})$, under the sup-norm, $\norm{f}_{I_{\eta}} = \displaystyle\sup_{t \in I_{\eta}}|f(t)|$. This means: $\displaystyle\lim_{n \to \infty} \norm{x_{n+p(n)} - x_n}_{I_{\eta}} = 0$ for any $\mathbb{N}$-valued function $p(n)$.
