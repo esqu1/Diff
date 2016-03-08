@@ -794,7 +794,7 @@ A subsequence of a subsequence of $(t_n)$ is itself a subsequence of $(t_n)$.
 \begin{lemma}
 If $(k_n)$ is a strictly increasing sequence in $\mathbb{N}$, then $k_n \to \infty$ as $n \to \infty$. In fact, $k_n \ge n$.
 \end{lemma}
-\begin{lemma}
+\begin{lemma}[Rising Sun Lemma]
 Every sequence in $\mathbb{R}$ has a monotone subsequence.
 \end{lemma}
 
@@ -833,5 +833,44 @@ Every Cauchy sequence in $\mathbb{R}$ (true in any metric space) is bounded: \[ 
 By definition, we can choose some $N$ such that \[ n,m \ge N \Rightarrow |t_n - t_m| < 1 \] Take $m = N$, then $|t_n - t_N| < 1$, and \[ |t_N| - 1 \le |t_n| \le |t_N| + 1 \qquad \forall n \ge N\]
 \[ |t_n| \le \max(|t_1|,|t_2|,|t_3|,\cdots,|t_{N-1}|) \]
 \end{proof}
+
+\section{3/8/16: Completeness of $\mathbb{R}$, $C^0([a,b])$}
+
+Previously we proved that every cauchy sequence is bounded. Now, we can prove that:
+\begin{lemma}
+Every cauchy sequence has a convergent subsequence.
+\end{lemma}
+\begin{proof}
+A monotone subsequence of a cauchy sequence is bounded. We need to show that a bounded monotone sequence must converge to a finite limit.
+
+Assume \[ a_1 \le a_2 \le a_3 \le \cdots \le a_n \le a_{n+1} \le \cdots \le b \]
+We claim that \[ l \coloneqq \sup\{a_n | n \ge 1\} = \lim_{n \to \infty} a_n \]
+\end{proof}
+
+\begin{lemma}
+If a subsequence of a cauchy sequence converges to some limit $t \in \mathbb{R}$, then the original sequence also converges to $t$.
+\end{lemma}
+\begin{proof}
+Since $(t_n)$ has a subsequence $(t_{k_n})$ s.t. $t_{k_n} \to t$ as $n \to \infty$.
+\[
+\begin{aligned}
+0 \le |t_n - t| &= |(t_n - t_{k_n}) + (t_{k_n} -t)| \\
+&\le |t_n - t_{k_n}| + |t_{k_n} - t| \\
+&\le 0
+\end{aligned}
+\]
+By the squeeze theorem, the proof is complete.
+\end{proof}
+
+\subsection{Putting it Together}
+Take the metric space \[ \mathscr{X} = C^0([a,b]) = \{f:[a,b] \to \mathbb{R}  \ | \ f \text{ is continuous on } [a,b]\} \]
+\[ d(f,g) = \norm{f-g}_I = \sup_{a \le t \le b} |f(t) - g(t)| \]
+
+We claim that if $(f_n)$ is a sequence in $C^0(I)$ that is cauchy $[ \norm{f_n - f_m}_I \to 0 \text{ as } \min{n,m} \to \infty ]$, then $(f_n)$ converges to some function $f \in C^0(I)$ $[\norm{f_n \to f}_I \to 0 \text{ as } n \to \infty]$.
+
+We must propose some limit function. For each $t \in I$, define \[ f(t) \coloneqq \lim_{n \to infty}f_n(t) \]
+We can see that $(f_n(t))$  converges in $\mathbb{R}$:
+\[ 0 \le |f_n(t) - f_m(t)| \le \underbrace{\norm{f_n - f_m}}_{0} = \sup_{a\le \tau \le b}|f_n(\tau) - f_m(\tau)| \]
+So we have our limit funciton, $f(t)$. However, we don't know yet if $f(t)$ is continuous; we have point-wise convergence, but not yet uniform convergence.
 
 \end{document}
