@@ -868,9 +868,55 @@ Take the metric space \[ \mathscr{X} = C^0([a,b]) = \{f:[a,b] \to \mathbb{R}  \ 
 
 We claim that if $(f_n)$ is a sequence in $C^0(I)$ that is cauchy $[ \norm{f_n - f_m}_I \to 0 \text{ as } \min{n,m} \to \infty ]$, then $(f_n)$ converges to some function $f \in C^0(I)$ $[\norm{f_n \to f}_I \to 0 \text{ as } n \to \infty]$.
 
-We must propose some limit function. For each $t \in I$, define \[ f(t) \coloneqq \lim_{n \to infty}f_n(t) \]
+We must propose some limit function. For each $t \in I$, define \[ f(t) \coloneqq \lim_{n \to \infty}f_n(t) \]
 We can see that $(f_n(t))$  converges in $\mathbb{R}$:
 \[ 0 \le |f_n(t) - f_m(t)| \le \underbrace{\norm{f_n - f_m}}_{0} = \sup_{a\le \tau \le b}|f_n(\tau) - f_m(\tau)| \]
 So we have our limit funciton, $f(t)$. However, we don't know yet if $f(t)$ is continuous; we have point-wise convergence, but not yet uniform convergence.
 
+\section{3/9/16: Completeness of $C^0([a,b])$; Existence in the Flow Problem}
+Let $(f_n)$ be a cauchy sequence in $C^0(I)$ where $I \coloneqq [a,b]$, so $\norm{f_n - f_m} \to 0$ as $\min(n,m) \to \infty$. Define, for each $t \in I$ separately, $\sigma_t \coloneqq (f_1(t), f_2(t), \cdots, f_n(t), \cdots )$, a sequence in $\mathbb{R}$. 
+
+We don't know yet, that 
+\begin{itemize}
+\item The functions actually converge to $f(t)$ ($\norm{f_n - f}_I \to 0$ as $n \to \infty$), known as uniform convergence. 
+\item $f(t)$ is continuous
+\end{itemize}
+
+As an example, consider:
+\[
+\begin{aligned}
+f_n(t) &\coloneqq t^n \\
+n &= 1,2,3,\cdots \\
+t \in I &= [0,1] \\
+\end{aligned}
+\]
+\[
+f(t) = 
+\begin{cases}
+0 \text{ if } 0 \le t < 1 \\
+1 \text{ if } t = 1
+\end{cases}
+\]
+Then, $\forall t \in [0,1]$, $f_n(t) \to f(t)$ as $n \in \infty$. We have point-wise convergence, but we do not have uniform convergence. 
+
+To prove continuity, we look at two points close together. Assuming continuity:
+\[ 
+\begin{aligned}
+|f(t) - f(\tilde{t})| &= |f(t) - f_n(t) + f_n(t) - f_n(\tilde{t}) + f_n(\tilde{t}) - f(\tilde{t})| \\
+&\le |f(t) - f_n(t)| + |f_n(t) - f_n(\tilde{t})| + |f_n(\tilde{t}) - f(\tilde{t})| \\
+&\le \norm{f - f_n}_I + |f_n(t) - f_n(\tilde{t})| + \norm{f_n - f}_I \\
+&= 2\norm{f - f_n}_I + |f_n(t) - f_n(\tilde{t})|
+\end{aligned}
+ \]
+We can take $\norm{f - f_n}_I$ to be less than some fixed number $\frac{\varepsilon}{4}$, and we get that \[ |f(t) - f(\tilde{t}) < \varepsilon \]
+
+For the other condition:
+
+\[ \norm{f_n - f_m} \to 0 \]
+This is equivalent to saying
+\[ \forall \varepsilon > 0, \exists N(\epsilon): \forall n,m \ge N(\varepsilon), \norm{f_n - f_m} < \varepsilon \]
+Taking limits on both sides:
+\[ \lim_{m \to \infty}\norm{f_n - f_m} \le \underbrace{\lim_{m \to \infty}\varepsilon}_{\varepsilon} \]
+\[ \norm{f_n - f}_I \le \varepsilon \text{ for all } n \ge N(\varepsilon) \]
+But by choosing $\varepsilon$ small enough, then $\norm{f_n - f}_I \to 0$
 \end{document}
