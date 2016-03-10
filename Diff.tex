@@ -722,7 +722,7 @@ So:
 
 \section{3/3/16}
 
-For any $t \in I_{\eta}$, \[ |x_{n+p}(t) - x_n(t)| = |x_{n+p}(t) - x_{n+p-1}(t) + x_{n+p-1}(t) - x_{n+p-2}(t) + x_{n+p-2}(t) - \cdots - x_n(t) \] is bounded. By the Triangle Inequality,
+For any $t \in I_{\eta}$, \[ |x_{n+p}(t) - x_n(t)| = |x_{n+p}(t) - x_{n+p-1}(t) + x_{n+p-1}(t) - x_{n+p-2}(t) + x_{n+p-2}(t) - \cdots - x_n(t)| \] is bounded. By the Triangle Inequality,
 \[
 \begin{aligned}
 |x_{n+p}(t) - x_n(t)| &\le \sum_{j=n}^{n+p-1}|x_{j+1}(t) - x_j(t)| \\
@@ -918,5 +918,24 @@ This is equivalent to saying
 Taking limits on both sides:
 \[ \lim_{m \to \infty}\norm{f_n - f_m} \le \underbrace{\lim_{m \to \infty}\varepsilon}_{\varepsilon} \]
 \[ \norm{f_n - f}_I \le \varepsilon \text{ for all } n \ge N(\varepsilon) \]
-But by choosing $\varepsilon$ small enough, then $\norm{f_n - f}_I \to 0$
+But by choosing $\varepsilon$ small enough, then $\norm{f_n - f}_I \to 0$. 
+
+\section{3/10/16}
+%Fix $t \in I = [a,b]$, and $\varepsilon > 0$. If we have $|f_n(t) - f_m(t)| < \varepsilon$ for all $n,m \ge N(\varepsilon, t)$, then 
+%\[
+%\begin{aligned}
+%\lim_{m \to \infty}{|f_n(t) - f_m(t)|}
+%\end{aligned}
+%\]
+
+Revisiting the Picard sequence, we now know that all such $x_n \in C^0(I_{\eta})$. We also know that the Picard sequence is a cauchy sequence in $C^0(I_{\eta})$. We conclude that $\exists$ a limit function $x(t) = \lim_{n \to \infty}x_n(t)$ for all $t \in I_{\eta}$. 
+
+Now we show that $x(t)$ solves our equation. \[ \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \to \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
+Then, \[ 
+\begin{aligned}
+x_{n+1}(t) &= x_0 + \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \\
+\lim_{n \to \infty} x_{n+1}(t) &= \lim_{n \to \infty}x_0 + \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \\
+x(t) &= x_0 + \int_{t_0}^t F(\tau,x(\tau)) \ d\tau
+\end{aligned}
+\]
 \end{document}
