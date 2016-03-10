@@ -930,7 +930,7 @@ But by choosing $\varepsilon$ small enough, then $\norm{f_n - f}_I \to 0$.
 
 Revisiting the Picard sequence, we now know that all such $x_n \in C^0(I_{\eta})$. We also know that the Picard sequence is a cauchy sequence in $C^0(I_{\eta})$. We conclude that $\exists$ a limit function $x(t) = \lim_{n \to \infty}x_n(t)$ for all $t \in I_{\eta}$. 
 
-Now we show that $x(t)$ solves our equation. \[ \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \to \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
+Now we show that $x(t)$ solves our equation. 
 Then, \[ 
 \begin{aligned}
 x_{n+1}(t) &= x_0 + \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \\
@@ -938,4 +938,6 @@ x_{n+1}(t) &= x_0 + \int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau \\
 x(t) &= x_0 + \int_{t_0}^t F(\tau,x(\tau)) \ d\tau
 \end{aligned}
 \]
+
+It remains to show that \[ \lim_{n \to \infty}\int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau = \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
 \end{document}
