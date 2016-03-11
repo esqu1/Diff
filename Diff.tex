@@ -928,7 +928,7 @@ But by choosing $\varepsilon$ small enough, then $\norm{f_n - f}_I \to 0$.
 %\end{aligned}
 %\]
 
-Revisiting the Picard sequence, we now know that all such $x_n \in C^0(I_{\eta})$. We also know that the Picard sequence is a cauchy sequence in $C^0(I_{\eta})$. We conclude that $\exists$ a limit function $x(t) = \lim_{n \to \infty}x_n(t)$ for all $t \in I_{\eta}$. 
+Revisiting the Picard sequence, we now know that all such $x_n \in C^0(I_{\eta})$. We also know that the Picard sequence is a cauchy sequence in $C^0(I_{\eta})$. We conclude that $\exists$ a limit function $x(t) = \displaystyle\lim_{n \to \infty}x_n(t)$ for all $t \in I_{\eta}$. 
 
 Now we show that $x(t)$ solves our equation. 
 Then, \[ 
@@ -940,4 +940,26 @@ x(t) &= x_0 + \int_{t_0}^t F(\tau,x(\tau)) \ d\tau
 \]
 
 It remains to show that \[ \lim_{n \to \infty}\int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau = \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
+
+\section{3/11/16: Fact that the Picard limit function solves the IVP; Extension to Vector IVP's; Linear IVP's}
+%First, to clarify something: say $(f_n)$ is cauchy in $C^0(I)$, $I=[a,b]$. \\\\
+%Let $f(t) \coloneqq \displaystyle\lim_{n \to \infty}f_n(t)$.
+$\forall t \in I_{\eta}$, we must prove: 
+\[ \lim_{n \to \infty}\int_{t_0}^t F(\tau, x_n(\tau)) \ d\tau = \int_{t_0}^t F(\tau,x(\tau)) \ d\tau \]
+Examine the absolute difference between the integrals:
+\[
+\begin{aligned}
+0 \le \left| \int_{t_0}^tF(\tau,x(\tau)) \ d\tau - \int_{t_0}^t F(\tau,x_n(\tau)) \ d\tau \right| &= \left| \int_{t_0}^t(F(\tau,x(\tau)) - F(\tau,x_n(\tau)) \ d\tau \right| \\
+&\le \left| \int_{t_0}^t |F(\tau,x(\tau)) - F(\tau, x_n(\tau))| \ d\tau \right| \\
+&\le K\left|\int_{t_0}^t|x(\tau) - x_n(\tau)| \ d\tau\right| \\
+&\le K\norm{x_n - x}_{I_{\eta}}\left| \int_{t_0}^td\tau \right| \\
+&\le K\eta\norm{x_n - x}_{I_{\eta}} \to 0
+\end{aligned}
+\]
+as $n \to \infty$. Thus, the integrals are equivalent, and thus we have finally proved Picard's method.
+
+\subsection{Extending to Vector Functions}
+\[ \pvec{x}'(t) = \vec{F}(t,\vec{x}(t)) \]
+
+
 \end{document}
