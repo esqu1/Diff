@@ -958,8 +958,33 @@ Examine the absolute difference between the integrals:
 \]
 as $n \to \infty$. Thus, the integrals are equivalent, and thus we have finally proved Picard's method.
 
-\subsection{Extending to Vector Functions}
-\[ \pvec{x}'(t) = \vec{F}(t,\vec{x}(t)) \]
+\section{3/17/16: Domain of Solutions for Linear Equations; Solving First-Order Linear Equations (Regular Case)}
+
+\subsection{First-Order $C^1$ Vector IVP's}
+\[ 
+\begin{cases}
+\vec{x}(t) = (x_1(t), x_2(t), \dots, x_n(t)) \\
+\pvec{x}'(t) = \vec{F}(t,\vec{x}(t)) = \vec{F}(t,x_1(t),\dots,x_n(t)) \\
+\vec{x}(t_0) = \vec{x}_0 \\
+\end{cases}
+\]
+
+To show that this has a unique solution, we can extend Picard's method:
+\[ \vec{x}_0(t) \equiv \vec{x}_0 \qquad \text{for all } t \in I_{\eta} = [t_0 - \eta, t_0 + \eta], \eta = \min\left(a,\frac{b}{M}\right) \]
+
+Our function now takes place in a box \[ \mathcal{B} = [t_0-a,t_0+a] \times [x_{01} - b,x_{01} + b] \times [x_{02} - b, x_{02} + b] \times \cdots \times [x_{0n} - b,x_{0n} + b] \]
+
+Here, we assume that \[ \frac{\partial \vec{F}}{\partial t}, \frac{\partial \vec{F}}{\partial x_1}, \dots, \frac{\partial \vec{F}}{\partial x_n} \quad \text{are continuous on } \mathcal{B} \]
+
+We take $M \ge \norm{\vec{F}(t,\vec{x})}$ for all $(t,\vec{x}) \in \mathcal{B} \in \mathbb{R}^{n+1}$.
+
+We also take $K \ge \max\{\norm{\frac{\partial F}{\partial x_1}(t,\vec{x})}, \dots, \norm{\frac{\partial F}{\partial x_n}(t,\vec{x})} \} $
+
+Now we wish to define the recursive step used in this method.
+
+\[ \vec{x}_{j+1}(t) \coloneqq \vec{x}_0 + \int_{t_0}^t \vec{F}(\tau, \vec{x}_j(\tau)) \ d\tau \qquad \text{for all } t \in I_{\eta} \]
+
+The proof is similar.
 
 
 \end{document}
