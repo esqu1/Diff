@@ -1001,4 +1001,21 @@ x_n' = a_{n1}(t)x_1 + a_{n2}(t)x_2 + \cdots + a_{nn}(t)x_n + b_n(t) \\
 If $a_{ij}(t)$ and $b_j(t)$ are continuous in a time interval $I$ for all $i,j$, then $\vec{x}(t) = (x_1(t),x_2(t),\dots,x_n(t))$ exists for all $t \in I$.
 \end{theorem}
 
+\section{3/21/16: First-Order Linear Equation in One Unknown--Regular Case}
+\[ 
+\begin{cases}
+x_1' = a_{11}(t)x_1 + a_{12}(t)x_2 + \cdots + a_{1n}(t)x_n + b_1(t) \\
+x_2' = a_{21}(t)x_1 + a_{22}(t)x_2 + \cdots + a_{2n}(t)x_n + b_2(t) \\
+\vdots \\
+x_n' = a_{n1}(t)x_1 + a_{n2}(t)x_2 + \cdots + a_{nn}(t)x_n + b_n(t) \\
+\end{cases}
+\]
+
+\[ \pvec{x}'(t) = \vec{F}(t,\vec{x}(t)) = {\bf A}(t)\vec{x}(t) + \vec{b}(t) \]
+
+Note that Picard's proof of existence \& uniqueness of solutions for vector IVP's still works even if $\vec{F}(t,\vec{x})$ isn't quite $C^1$ on some box about $(t_0, \vec{x}_0)$, but satisfies a Lipschitz condition with respect to $\vec{x}$:
+\[ \norm{\vec{F}(t,\vec{x}) - \vec{F}(t,\vec{y})} \le K\norm{\vec{x} - \vec{y}} \qquad \text{for all } (t,\vec{x}), (t,\vec{y}) \in \mathcal{B} \]
+where $\mathcal{B} = [t_0-a,t_0+a] \times [x_{01} - b,x_{01} + b] \times [x_{02} - b, x_{02} + b] \times \cdots \times [x_{0n} - b,x_{0n} + b]$.
+
+It suffices, if we wish to apply Picard's Theorem, to check that $\frac{\partial \vec{F}}{\partial x_1},\frac{\partial \vec{F}}{\partial x_2},\dots,\frac{\partial \vec{F}}{\partial x_n}$ are continuous in $\mathcal{B}$. (The partial w.r.t. $t$ doesn't even need to be continuous.
 \end{document}
