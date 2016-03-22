@@ -1018,4 +1018,59 @@ Note that Picard's proof of existence \& uniqueness of solutions for vector IVP'
 where $\mathcal{B} = [t_0-a,t_0+a] \times [x_{01} - b,x_{01} + b] \times [x_{02} - b, x_{02} + b] \times \cdots \times [x_{0n} - b,x_{0n} + b]$.
 
 It suffices, if we wish to apply Picard's Theorem, to check that $\frac{\partial \vec{F}}{\partial x_1},\frac{\partial \vec{F}}{\partial x_2},\dots,\frac{\partial \vec{F}}{\partial x_n}$ are continuous in $\mathcal{B}$. (The partial w.r.t. $t$ doesn't even need to be continuous.
+
+\section{3/22/16: First-Order Linear Equation--in One Unknown (Regular Case)}
+
+\subsection{Form of Linear Equation}
+The form of a linear equation is:
+
+\[ x' = F(t,x) = g(t)x + h(t) \qquad \text{where } g,h \text{ are continuous on some interval } I=[t_0 - a,t_0 + a] \]
+Here, the slope function is linear in $x$, but not necessarily in $t$.
+
+\subsection{Euler's method of integrating factors}
+\[
+\begin{aligned}
+x' - g(t)x &= h(t) \qquad (\text{Let } u = u(t) \text{ be a function of } t \text{ TBD}) \\
+ux' \underbrace{- (ug)}_{u'}x &= h \\
+ux' + u'x &= ut \\
+(ux)' &= uh \\
+\end{aligned}
+\]
+
+The problem then becomes finding such a $u$ such that \[ u' = -gu \]
+Solving this differential equation, we get that 
+\[
+\begin{aligned}
+u' &= -gu \\
+(\ln u)' = \frac{u'}{u} &= -g(t) \\
+\ln u &= -\int_{t_0}^t g(\tau) \ d\tau \\
+\Aboxed{u &= \exp\left\{ - \int_{t_0}^t g(\tau) \ d\tau\right\} = e^{-\displaystyle\int_{t_0}^t g(\tau) \ d\tau}} \\
+\end{aligned}
+\]
+Going back to our equation:
+\[
+\begin{aligned}
+(ux)' &= uh = h(t)\exp\left\{ - \int_{t_0}^t g(\tau) \ d\tau\right\} \\
+u(t)x(t) &= \int_{t_0}^t h(\theta) \exp\left\{ - \int_{t_0}^{\theta} g(\tau) \ d\tau\right\} \ d\theta + C \\
+x(t) &= \exp\left\{\int_{t_0}^t g(\tau) \ d\tau\right\} \left[C + \int_{t_0}^t h(\theta) \exp\left\{ - \int_{t_0}^{\theta} g(\tau) \ d\tau\right\} \ d\theta\right]
+\end{aligned}
+\]
+
+\textbf{Example.} Solve $x' = (2t)x - (1+t)$, given $t_0 = 0$. \\ \\
+We first find $u$:
+\[ u(t) = \exp{-\int_0^t 2\tau \ d\tau} = e^{-t^2} \]
+Then:
+\[
+\begin{aligned}
+x' - (2t)x &= -(1+t) \\
+ux' - (2t)ux &= -u(1+t) \\
+(ux)' &= -(1+t)e^{-t^2} \\
+ux &= -\int_0^t (1+\theta)e^{-\theta^2} \ d\theta + C \\
+x(t) &= Ce^{t^2} - e^{t^2}\int_0^t(1+\theta)e^{-\theta^2} \ d\theta
+\end{aligned}
+\]
+
+\subsection{Singular Case}
+\[ f(t)x' + g(t)x = h(t) \]
+We are interested in solving this equation near $t_0$, such that $f(t_0) = 0$.
 \end{document}
