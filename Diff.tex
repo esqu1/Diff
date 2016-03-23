@@ -1023,7 +1023,6 @@ It suffices, if we wish to apply Picard's Theorem, to check that $\frac{\partial
 
 \subsection{Form of Linear Equation}
 The form of a linear equation is:
-
 \[ x' = F(t,x) = g(t)x + h(t) \qquad \text{where } g,h \text{ are continuous on some interval } I=[t_0 - a,t_0 + a] \]
 Here, the slope function is linear in $x$, but not necessarily in $t$.
 
@@ -1070,7 +1069,40 @@ x(t) &= Ce^{t^2} - e^{t^2}\int_0^t(1+\theta)e^{-\theta^2} \ d\theta
 \end{aligned}
 \]
 
+
+\section{3/23/16: First-Order Linear Equations--Singular Case}
+
 \subsection{Singular Case}
 \[ f(t)x' + g(t)x = h(t) \]
-We are interested in solving this equation near $t_0$, such that $f(t_0) = 0$.
+We are interested in solving this equation near $t_0$, such that $f(t_0) = 0$. $f,g,h$ are defined and ``nice'' in some interval $I$. We cannot simply write the linear equation in the regular case, since $f(t)$ might be zero at some point. 
+
+We must find the solutions $x(t)$ in some \underline{punctured interval}:
+\[ (t_0 - \varepsilon, t_0) \cup (t_0, t_0 + \varepsilon) \]
+Take $h(t) \equiv 0$, and assume that $g(t)$ is \underline{analytic} with radius of convergence $R > 0$ 
+\[ g(t) = \sum_{n=0}^{\infty} b_n(t-t_0)^n, \text{ convergent if } |t-t_0| < R \]
+Also assume that \[ f(t) = (t-t_0)\underbrace{\sum_{n=0}^{\infty}a_n(t-t_0)^n}_{a(t)}, \text{ convergent if } |t-t_0| < R \]
+The unusual form for $f(t)$ is due to the fact that the constant term of the power series must be 0.
+
+\subsection{Finding a Nonzero Solution}
+We can search for a solution in the form \[ x(t) = \sum_{n=0}^{\infty} c_n(t-t_0)^n \] where $(c_n)_{n=1}^{\infty}$ is to be determined.
+
+To make it easier for ourselves, we can define functions that will shift the $t$ axis:
+\[
+\begin{aligned}
+y(t) &\coloneqq x(t+t_0) \\
+\tilde{f}(t) &\coloneqq f(t+t_0) \\
+\tilde{g}(t) &\coloneqq g(t+t_0)
+\end{aligned}
+\]
+So our equation becomes:
+\[ \tilde{f}(t)y' + \tilde{g}(t)y = 0 \]
+Therefore, WLOG we can assume that $t_0 = 0$. So now we have \[ 
+\begin{aligned}
+x(t) &= \sum_{n=0}^{\infty} c_nt^n \\
+f(t) &= t\sum_{n=0}^{\infty} a_nt^n \\
+g(t) &= \sum_{n=0}^{\infty} b_nt^n
+\end{aligned}
+\]
+We can calculate $x'(t)$ to be \[ x'(t) = \sum_{n=0}^{\infty}nc_nt^{n-1} = \sum_{n=1}^{\infty}nc_nt^{n-1} = \sum_{n=0}^{\infty}(n+1)c_{n+1}t^n \]
+
 \end{document}
