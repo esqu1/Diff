@@ -1105,4 +1105,24 @@ g(t) &= \sum_{n=0}^{\infty} b_nt^n
 \]
 We can calculate $x'(t)$ to be \[ x'(t) = \sum_{n=0}^{\infty}nc_nt^{n-1} = \sum_{n=1}^{\infty}nc_nt^{n-1} = \sum_{n=0}^{\infty}(n+1)c_{n+1}t^n \]
 
+\section{3/24/16}
+Let us assume that $g(0) \neq 0$.
+
+\[ 
+\begin{aligned}
+ta(t)x'  + g(t)x &= 0 \\
+tx' = \frac{g(t)}{a(t)}x &= 0 \\
+tx' + b(t)x &= 0
+\end{aligned}
+\]
+where $b(t)$ is analytic at $t=0$, with a radius of convergence of $R_1 > 0$. We need to show that $b(t)$ is analytic.
+\[ 
+\begin{aligned}
+\frac{g(t)}{a(t)} &= \frac{b_0 + b_1t + b_2t^2 + \cdots}{a_0 + a_1t + a_2t^2 + \cdots} \\
+&= \frac{1}{a_0}\frac{b_0 + b_1t + b_2t^2 + \cdots}{1 + \left(\frac{a_1}{a_0}\right)t + \left(\frac{a_2}{a_0}\right)t^2 + \cdots} \\
+&= \frac{1}{a_0}g(t)\frac{1}{1+J} \\
+&= \frac{g(t)}{a_0}(1-J + J^2 - J^3 + \cdots)
+\end{aligned}
+\]
+Plugging back in $J$, we get a power series, showing that $b(t)$ is analytic.
 \end{document}
