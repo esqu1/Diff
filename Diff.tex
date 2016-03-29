@@ -1125,4 +1125,33 @@ where $b(t)$ is analytic at $t=0$, with a radius of convergence of $R_1 > 0$. We
 \end{aligned}
 \]
 Plugging back in $J$, we get a power series, showing that $b(t)$ is analytic.
+
+\section{3/28/16}
+
+
+\[ 1 - \left(\sum_{k\ge 1}\frac{a_k}{a_0}t^k\right) + \left(\sum_{k \ge 1}\frac{a_k}{a_0}t^k\right)^2 - \left(\sum_{k\ge 1}\frac{a_k}{a_0}t^k\right)^3 + \cdots \]
+
+\section{3/29/16}
+
+\begin{lemma}
+Let $\displaystyle\sum_{n=0}^{\infty} a_nt^n$ have radius of convergence $R_1 >< 0$, and let $\displaystyle\sum_{n=0}^{\infty}b_nt^n$ have radius of convergence $R_2 > 0$. \\ \\
+Then \[ \left(\sum_{n\ge0}a_nt^n\right)\left(\sum_{n\ge0}b_nt^n\right) = \sum_{n\ge0}c_nt^n\] is convergent for $|t| < R \coloneqq \min(R_1,R_2)$.
+\end{lemma}
+
+Here, $c_n = \displaystyle\sum_{j=0}^n a_{n-j}b_j = a_nb_0 + a_{n-1}b_1 + a_{n-2}b_2 + \cdots + a_0b_n$.
+
+Let us look at \[ 
+\begin{aligned}
+\left(\sum_{n\ge0}a_nt^n\right)^k &= \left(\sum_{n_1\ge0}a_{n_1}t^{n_1}\right)\left(\sum_{n_2\ge0}a_{n_2}t^{n_2}\right)\cdots\left(\sum_{n_k\ge0}a_{n_k}t^{n_k}\right) \\
+&= \sum_{n\ge 0}\left(\sum_{n_1 + \cdots + n_k = n}a_{n_1}a_{n_2}\cdots a_{n_k}\right)t^n = \sum_{n \ge 0}c_{n,k}t^n
+\end{aligned}
+\]
+The radius of convergence for this new series is the same as that of the original series.
+
+\subsection{Rewriting Our Differential Equation}
+\[ tx' + \left(\sum_{n\ge0}\beta_nt^n\right)x = 0 \]
+
+Fact: this equation has solutions of the form \[ x(t) = |t|^r\sum_{n\ge0}c_nt^n \]
+
+
 \end{document}
