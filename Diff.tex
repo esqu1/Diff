@@ -1153,5 +1153,44 @@ The radius of convergence for this new series is the same as that of the origina
 
 Fact: this equation has solutions of the form \[ x(t) = |t|^r\sum_{n\ge0}c_nt^n \]
 
+\section{3/30/16: Theorems on Power Series, etc.}
+\begin{theorem}
+Suppose $\displaystyle\sum_{n=0}^{\infty}a_nt^n$ has radius of convergence $R > 0$. Then $\displaystyle\sum_{n=0}^{\infty}|a_nt^n|$ converges, provided $t \in (-R,R)$, i.e. any power series with a positive radius of convergence is actually absolutely convergent in the interior of its interval of convergence.
+\end{theorem}
+
+\begin{proof}
+Choose some value $r$ such that $0 \le |t| < r < R$. We claim that $\displaystyle\sum_{n=0}^{\infty}a_nr^n$ converges, because $r \in (-R,R)$. By the Divergence Test, $a_nr^n \to 0$ as $n \to \infty$. Any vanishing sequence is necessarily bounded, i.e. \[ \exists \ M \ge 0: |a_nr^n| \le M \]
+\[ |a_n| \le Mr^{-n} \]
+\[ 
+\begin{aligned}
+\sum_{n=0}^{\infty}|a_nt^n| = \sum_{n=0}^{\infty}|a_n||t|^n &\le M\sum_{n=0}^{\infty}r^{-n}|t|^n \\
+&= M\sum_{n=0}^{\infty}\left(\frac{|t|}{r}\right)^n \\
+&< \infty
+\end{aligned}
+\]
+The last sum is a geometric series with common ratio $\frac{|t|}{r} \in [0,1)$. By the Comparison test, the smaller series converges, and we are done.
+\end{proof}
+
+\begin{theorem}
+Suppose $(a_n)_{n=1}^{\infty}$ and $(b_n)_{n=1}^{\infty}$ are mutual rearrangements, i.e. $\exists$ a one-to-one function $p: \mathbb{N} \to \mathbb{N}$ such that $\forall n, b_n = a_{p(n)}, a_m = b_{p^{-1}(m)}$. Then, if $\displaystyle\sum_{n=1}^{\infty}a_n$ is absolutely convergent, then so is $\displaystyle\sum_{n=1}^{\infty} b_n$, and $\displaystyle\sum_{n=1}^{\infty}a_n = \displaystyle\sum_{n=1}^{\infty}b_n$.
+\end{theorem}
+
+\begin{proof}
+Define \[ \mathcal{S} = \{a_{n_1} + a_{n_2} + \cdots + a_{n_k} | n_1,n_2,\cdots,n_k \in \mathbb{N}\} \] Note that $\mathcal{S} \neq \emptyset$. \\ \\
+We claim that $\mathcal{S}$ is bounded. Choose any $x \in \mathcal{S}$. We'll show: $|x| \le A \coloneqq \displaystyle\sum_{n=1}^{\infty}|a_n| < \infty$. \\ \\
+Say $x = a_{n_1} + a_{n_2} + \cdots + a_{n_k}$. By the Triangle Inequality:
+\[ 
+\begin{aligned}
+x \le |x| &\le |a_{n_1}| + |a_{n_2}| + \cdots + |a_{n_k}|  \\
+&\le |a_1| + |a_2| + \cdots + |a_N| \qquad \text{where } N = \max(n_1,n_2,\dots,n_k)  \\
+&\le |a_1| + |a_2| + \cdots = A
+\end{aligned}
+\]
+Let $a \coloneqq \sup{\mathcal{S}} \in \mathbb{R}$; in fact $a \le A$. Let $A_n \coloneqq a_1 + a_2 + \cdots + a_n$; note that $A_n \in \mathcal{S}$. 
+\[ A_n \le a \Rightarrow \lim_{n \to \infty} A_n \le a \]
+Define $B_n \coloneqq b_1 + b_2 + \cdots + b_n$, note that $B_n \in \mathcal{S}$. So $B_n \le a$. \\ \\
+Define $\tilde{B}_n \coloneqq |b_1| + |b_2| + \cdots + |b_n| \le A$.
+Therefore the $b_n$ series is absolutely convergent.
+\end{proof}
 
 \end{document}
