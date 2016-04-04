@@ -1193,4 +1193,56 @@ Define $\tilde{B}_n \coloneqq |b_1| + |b_2| + \cdots + |b_n| \le A$.
 Therefore the $b_n$ series is absolutely convergent.
 \end{proof}
 
+\section{4/4/16: Series Solutions}
+
+Recall, we want to solve $tx' + b(t)x = 0$, where $b(t) = \displaystyle\sum_{n \ge 0}\beta_n t^n$ is analytic, with radius $R > 0$ (so converges when $|t| < R$).
+
+\underline{Test case}: $b(t) = \beta_0$ (a constant). WLOG, can assume $\beta_0 \neq 0$.
+\[ tx' + \beta_0x = 0 \]
+
+Consider when $t>0$. We claim that there is a solution of the form $x(t) = t^r$; plugging this in:
+\[
+\begin{aligned}
+  rt^r + \beta_0t^r &\equiv 0 \\
+  (r+ \beta_0)t^r &\equiv 0
+\end{aligned}
+\]
+so our solution is $x(t) = t^{-\beta_0}$. 
+
+Now consider when $t<0$. Then $x(t) = (-t)^r$ (so then $tx' = r(-t)^r$):
+\[
+\begin{aligned}
+  r(-t)^r + \beta_0(-t)^r &\equiv 0 \\
+  (r+\beta_0)(-t)^r &\equiv 0
+\end{aligned}
+\]
+so our solution here is $(-t)^{-\beta_0}$.
+
+Combining these two solutions, we get our solution:
+\[ x(t) = |t|^{-\beta_0} \qquad \text{for } t\neq 0\]
+
+Our general solution turns out to be:
+\[ x(t) = c|t|^{-\beta_0} \qquad \text{for } 0 < |t| < R \]
+
+Now, what happens if $b(t)$ does not have such a nice form?
+
+\underline{Ansatz}: \[ x(t) = |t|^r\sum_{n\ge 0} c_nt^n \]
+
+Let us restrict our solution to $t>0$ to drop the absolute value sign.
+\[
+\begin{aligned}
+  x(t) &= t^r \sum_{n \ge 0}c_nt^n \\
+  x'(t) &= rt^{r-1} \sum_{n\ge 0} c_nt^n + t^r \sum_{n \ge 0}nc_nt^{n-1} \\
+  tx'(t) &= rt^r \sum_{n\ge 0} c_nt^n + t^r \sum_{n \ge 0}nc_nt^n = t^r \sum_{n \ge 0}(r+n)c_nt^n \\
+  b(t)x(t) &= t^r \sum_{n \ge 0} \beta_nt^n \sum_{n \ge 0} c_nt^n = t^r \sum_{n \ge 0}\left(\sum_{j = 0}^n \beta_{n-j}c_j\right) \\
+\end{aligned}
+\]
+Putting this in our differential equation:
+\[
+\begin{aligned}
+  t^r\sum_{n \ge 0}\left[(r+n)c_n + \sum_{j=0}^n\beta_{n-j}c_j\right]t^n &\equiv 0 \\
+  \sum_{n \ge 0}\left[(r+n)c_n + \sum_{j=0}^n\beta_{n-j}c_j\right]t^n &\equiv 0
+\end{aligned}
+\]
+This is a power series, and since it is identically zero, its coefficients must all be zero as well.
 \end{document}
