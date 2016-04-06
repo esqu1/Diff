@@ -1245,4 +1245,19 @@ Putting this in our differential equation:
 \end{aligned}
 \]
 This is a power series, and since it is identically zero, its coefficients must all be zero as well.
+
+\section{4/6/16}
+For $t>0$, we want a solution of the form $x(t) = t^r\sum_{n \ge 0} c_nt^n$. We found that we must have 
+\[ \forall n \ge 0: \quad (n+r)c_n +\sum_{j=0}^n \beta_{n-j}c_j = 0 \]
+Consider when $n > 0$:
+\[ (n - \beta_0)c_n + \beta c_n + \sum_{j=0}^{n-1} \beta_{n-j}c_j = 0 \]
+\[ \boxed{c_n = -\frac{1}{n}\sum_{j=0}^{n-1}\beta_{n-j}c_j = -\left(\frac{c_0\beta_{n-1} + c_1\beta{n-2} + \cdots + c_{n-1}\beta_0}{n}\right)} \]
+
+\begin{theorem}
+If we define $(c_n)_{n=1}^{\infty}$ recursively by \[ c_0 \coloneqq 1, \qquad c_n \coloneqq -\frac{1}{n}\sum_{j=0}^{n-1}b_{n-j}c_j \]
+then: \begin{enumerate}
+\item $\displaystyle\sum_{n=0}^{\infty} c_nt^n$ converges for all $t \in (-R,R)$ \\
+\item the function $x(t) \coloneqq|t|^{-\beta_0}\displaystyle\sum_{n \ge 0} c_nt^n$ satisfies $tx' + b(t)x = 0$ for all $t \in (-R,R)\backslash \{0\}$
+\end{enumerate}
+\end{theorem}
 \end{document}
