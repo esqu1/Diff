@@ -1260,4 +1260,49 @@ then: \begin{enumerate}
 \item the function $x(t) \coloneqq|t|^{-\beta_0}\displaystyle\sum_{n \ge 0} c_nt^n$ satisfies $tx' + b(t)x = 0$ for all $t \in (-R,R)\backslash \{0\}$
 \end{enumerate}
 \end{theorem}
+
+\section{4/13/16: Linear Equations with Constant Coefficients}
+\subsection{Summary}
+\begin{enumerate}
+\item \textbf{Separable Equations}: $x' = f(t)g(x)$ 
+\item \textbf{First-Order Linear Equation, regular case}: $x' = f(t)x + g(t)$
+\item \textbf{First-Order Linear Equation, singular case}: $tx' = f(t)x + g(t)$
+\item \textbf{Second-Order Linear Equation, regular case}: $x'' = f(t)x' + g(t)x + h(t)$
+\item \textbf{Second-Order Linear Equation, singular case}: $t^2x'' = tf(t)x' + g(t)x + h(t)$
+\end{enumerate}
+
+\subsection{Solving}
+Let $L[x]$ be an \textbf{operator} such that
+\[ L[x] = ax'' + bx' + cx \]
+where $x=x(t)$. The equation in question we want to solve is:
+\[ L[x] = h(t) \]
+
+\section{4/14/16}
+\[ L[x] = ax'' + bx' + c \]
+This is a linear differential operator of order 2 with constant coefficients. Note that a linear operator satisfies \[ F(s\psi + t\phi) = sF(\psi) + tF(\phi) \]
+The domain of the operator $L$ is \[ C^2(\mathbb{R}) = \{ f: \mathbb{R} \to \mathbb{R} \ | \ f'' \text{ exists and is continuous} \} \]
+Codomain of $L$: $C^0(\mathbb{R})$
+
+\subsection{Homogeneous and Inhomogeneous}
+The \textbf{homogeneous} equation looks like
+\[ L[x] = 0 \]
+
+\subsection{Finding a Solution}
+\[ ax'' + bx' + cx = 0 \]
+TRY $x(t) = e^{rt}$!!!
+\[
+\begin{aligned}
+  L[e^{rt}] &= \underbrace{(ar^2+br+c)}_{P_L(r) \text{ (characteristic polynomial)}}e^{rt} \\
+  P_L(r) &= 0 \\
+  r &\in \{ r^-,r^+ \} 
+\end{aligned}
+\]
+
+What happens when $r$ is complex:
+\[
+\begin{aligned}
+  e^{(\alpha + i\beta)t} &= e^{\alpha t}e^{i\beta t} \\
+  &= e^{\alpha t}[\cos(\beta t) + i\sin(\beta t)] \\
+\end{aligned}
+\]
 \end{document}
