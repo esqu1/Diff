@@ -1305,4 +1305,66 @@ What happens when $r$ is complex:
   &= e^{\alpha t}[\cos(\beta t) + i\sin(\beta t)] \\
 \end{aligned}
 \]
+
+\section{4/15/16}
+\begin{definition}
+Two functions $\psi$ and $\phi$ on a common domain $I \subseteq \mathbb{R}$ (an interval) are said to be independent if $\lnot \exists c \in \mathbb{R}: \ \psi = c\phi$, i.e. $\dfrac{\psi}{\phi}$ is nonconstant on $I$.
+\end{definition}
+
+We claim that if $\psi$ and $\phi$ are two independent solutions, then the set of all possible solutions of $L[x] = 0$ is
+\[ \{ r\psi + s\phi \ | \ r,s \in \mathbb{R} \} \]
+
+The question becomes: can the quadratic yield suitable solutions?
+
+\begin{itemize}
+\item \textbf{Case 1}: $\Delta \coloneqq b^2 - 4ac > 0$ \\
+Then $\exists$ two real roots, $r_1 \neq r_2$:
+\[ r_1 = \frac{-b-\sqrt{\Delta}}{2a}, \quad r_2 = \frac{-b+\sqrt{\Delta}}{2a} \]
+Then we have $\psi(t) = e^{r_1t}$ and $\phi(t) = e^{r_2t}$, both real-valued functions. We can easily see that they are linearly independent.
+\item \textbf{Case 2}: $\Delta < 0$ \\
+\[ r_1 = \frac{-b-i\sqrt{|\Delta|}}{2a}, \quad r_2 = \frac{-b+i\sqrt{|\Delta|}}{2a} \]
+Our solutions here are $\Psi(t) = e^{r_1t}$ and $\Phi(t) = e^{r_2t}$. \\
+
+Write $\alpha \coloneqq -\frac{b}{2a}, \beta \coloneqq \frac{\sqrt{|\Delta|}}{2a}$. Expanding our functions:
+\[
+\begin{aligned}
+  \Psi(t) &= (e^{\alpha t}\cos{\beta t}) - i(e^{\alpha t}\sin{\beta t}) \\
+  \Phi(t) &= (e^{\alpha t}\cos{\beta t}) + i(e^{\alpha t}\sin{\beta t}) 
+\end{aligned}
+\]
+\item \textbf{Case 3}: $\Delta = 0$, $\exists$ a repeated root, $r_1 = -\frac{b}{2a}$.
+
+\[
+\begin{aligned}
+  L[e^{rt}] &\equiv p_L(r)e^{rt} \\
+  \frac{\partial}{\partial r} L[e^{rt}] &\equiv \frac{\partial}{\partial r}[p_L(r)e^{rt}] \\
+  L\left[\frac{\partial}{\partial r}(e^{rt})\right] &\equiv p_L(r)te^{rt} + p_L'(r)e^{rt} \\
+  L[te^{rt}] &\equiv [tp_L(r) + p_L'(r)]e^{rt} \\
+  &\equiv 0
+\end{aligned}
+\]
+Therefore, our two real-valued solutions are $\psi(t) = e^{rt}$ and $\phi(t) = te^{rt}$.
+\end{itemize}
+
+\section{4/18/16: Determination of the General Solution}
+Recall:\[ L[x] = ax'' + bx' + cx \]
+where $L: C^2(\mathbb{R}) \to C^0(\mathbb{R})$
+
+\begin{theorem}
+If $\psi$ and $\phi$ are linearly independent real-valued solutions of $L[x] = 0$, then every solution $X(t)$ of $L[x] = 0$ can be written as \[ X(t) \equiv r\psi(t) + s\phi(t) \] where $r,s \in \mathbb{R}$.
+\end{theorem}
+
+\begin{proof}
+Proving that $X(t)$ is a solution is trivial:
+\[ L[r\psi + s\phi] = rL[\psi] + sL[\phi] \equiv 0 \]
+To prove the other direction, we set up an IVP:
+\[
+\begin{aligned}
+  ax'' + bx' + c &= 0 \\
+  x(0) &= X(0) \\
+  x'(0) &= X'(0) \\
+\end{aligned}
+\]
+By the Picard Theorem, there is \underline{exactly} one solution, namely $x(t) = X(t)$.
+\end{proof}
 \end{document}
