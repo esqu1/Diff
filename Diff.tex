@@ -1365,6 +1365,194 @@ To prove the other direction, we set up an IVP:
   x'(0) &= X'(0) \\
 \end{aligned}
 \]
-By the Picard Theorem, there is \underline{exactly} one solution, namely $x(t) = X(t)$.
+By the Picard Theorem, there is \underline{exactly} one solution, namely $x(t) = X(t)$. \\ \\
+Our initial data gives us:
+\[
+\begin{cases}
+  r\psi(0) + s\phi(0) &= X(0) \\
+  r\psi'(0) + s\phi'(0) &= X'(0)
+\end{cases}
+\]
+This is simply a system of 2 equations in $r$ and $s$, which will have a solution if the determinant
+\[
+\begin{vmatrix}
+\psi(0) & \phi(0) \\
+\psi'(0) & \phi'(0)
+\end{vmatrix}
+\]
+is nonzero at $t=0$. It suffices to show that this is the case. \\ \\
+Define the \textbf{Wronskian} of $\psi$ and $\phi$ to be
+\[
+W(t) = W(\psi,\phi)(t) = \begin{vmatrix}
+\psi(t) & \phi(t) \\
+\psi'(t) & \phi'(t)
+\end{vmatrix} = \psi(t)\phi'(t) - \psi'(t)\phi(t)
+\]
+We first show that $W(t)$ is not identically zero (always zero). \\ \\ %insert please
+Note that
+\[
+\begin{aligned}
+  W &= \psi\phi' - \phi'\psi \\
+  W' &= \psi\phi'' - \psi''\phi \\
+  aW' &= \psi(a\phi'') - (a\psi'')\phi \\
+  bW &= \psi(b\phi') - (b\psi')\phi \\
+  aW' + bW &= \phi(-c\phi) - (-c\psi)\phi = 0
+\end{aligned}
+\]
+Now we have an differential equation in $W$: $aw' + bw = 0$. The solution of this equation is $w = ce^{-\frac{bt}{a}}$. However, $c\neq 0$ because otherwise, $W(t)$ would be identically zero, and we just showed that it can't happen. Therefore, $W(t)$ is always nonzero, and then $W(0) \neq 0$. 
 \end{proof}
+\section{4/20/16}
+\subsection{Inhomogeneous Equation}
+
+We have found the solution for $x$ in $L[x] = 0$, now we seek to find solution
+for $x$ in $L[x] = f(t)$. Note that $f(t)$ doesn't have to be too nice, it just
+has to be nice enough, as long as it is Riemann Integrable. For simplicity's
+sake, we can restrict $f$ to a piecewise continuous, and the domain of $f$ is
+on some interval $I \subseteq \mathbb{R}$, and we're trying to find a
+solution $x(t)$ on $I$.
+
+\subsubsection{Form of the Solution Set}
+The solution set of $L[x] = f$ is:
+\[
+    \{\psi_p + y \ | \ L[y] = 0\}
+\]
+where $L[\psi_p] = f$. We have to show two things for
+the bi-conditional:
+\begin{enumerate}
+    \item all functions of the form $\psi_p + y$ is a solution to $L[x] = f$
+    \item all solution of $L[x]$ is of the form $\psi_p + y$
+\end{enumerate}
+
+Let us first show that $\psi_p + y$ satisfies $L[x] = f$ for any $y$ satisfying
+$L[y] = 0$. This is easy to prove, we just use the linearity of $L$:
+\[
+    L[\psi_p + y] = L[\psi_p] + L[y] = f + 0 = f
+\]
+
+Now we have to go the other direction. We have to show that any function $x$
+such that $L[x] = f$ can be expressed as $\psi_p + y$ for some $y$ with $L[y] =
+0$.
+
+Let us define $y := x - \psi_p$. We must show that $L[y] = 0$. Once again let us
+use the linearity of $L$:
+\[
+    L[y] = L[x - \psi_p] = L[x] - L[\psi_p] = f - f = 0
+\]
+
+The result of this theorem is that we now only have to find one particular
+solution to $L[x] = f$, and once we have that we can generate the solution set
+to the non-homogeneous equation:
+\[
+    \{\psi_p + r\psi + s\phi \ | \ r, s \in \mathbb{R}\}
+\]
+where $\psi_p$ is a particular solution of $L[x] = f$ and $\psi, \phi$ are
+linearly independent solutions of the reduced equation.
+
+\subsubsection{Finding $\psi_p$}
+
+There are two methods of finding the solution:
+\begin{enumerate}
+    \item Variation of Parameters -- works for any Riemann Integrable function
+        $f$.
+    \item Methods of Undetermined Coefficients -- No integration is
+        required, but only works for $f(t)$ in the form of:
+        \[
+            f(t) = \sum_{k=1}^N P_k (t) e^{\sigma_k t}
+            \text{trig}_k(\beta_k t)
+        \]
+        Where $\text{trig}_k \in \{\sin, \cos\}$
+\end{enumerate}
+
+\subsubsection{Variation of Parameters}
+
+Ansatz: Try for a solution of the form $x = u\psi + v\phi$ where $u, v$ are
+unknown functions of $t$ (to be determined) and $\psi, \phi$ are the two
+linearly independent solutions of $L[x] = 0$, which we know how to find.
+
+Given the form, let us calculate $x'$ and $x''$:
+\[
+\begin{aligned}
+    x &= u\psi + v\phi\\
+    x' &= u\psi' + u'\psi + v\phi' + v'\phi\\
+    x'' &= u\psi'' + 2u'\psi' + u''\psi + v\phi'' + 2v'\phi' + v''\psi\\
+        &= (u\psi'' + v\phi'') + (u''\psi + v''\phi) + 2(u'\psi' + v'\phi')
+\end{aligned}
+\]
+
+Let us set $L[x] = f = ax'' + bx' + cx$, which looks like:
+\[
+    f = a(u\psi'' + v\phi'') + a(u''\psi + v''\phi) + 2a(u'\psi' + v'\phi') +
+    bu\psi' + bu'\psi + bv\phi' + bv'\phi + cu\psi + cv\phi
+\]
+
+Note that with some factoring, things begin to die:
+\[
+\begin{aligned}
+    f &= uL[\psi] + vL[\phi] + a(u''\psi + v''\phi) + 2a(u'\psi' + v'\phi') +
+    b(u'\psi + v'\phi)\\
+      &= a(u''\psi + v''\phi) + 2a(u'\psi' + v'\phi') +
+    b(u'\psi + v'\phi)
+\end{aligned}
+\]
+
+Let us assume for the sake of argument that $u'\psi + v'\phi \equiv 0$. If we
+differentiate this, we get:
+\[
+    (u''\psi + v''\phi) + (u'\psi' + v'\phi') \equiv 0
+\]
+note that both of these shows up in or definition for $f$, if we plug in this
+relationship we get:
+\[
+    f = a(u'\psi' + v'\phi')
+\]
+
+Now we just have to find $u', v'$ satisfying:
+\[
+    \begin{cases}
+        u'\psi + v'\phi \equiv 0\\
+        \psi'u' + \phi'v' = f / a
+    \end{cases}
+\]
+this is a system of two linear equations, we know that there is an unique
+solution because $W(t) \neq 0$. To solve this, let us multiply the top equation
+by $\phi'$ and the bottom equation by $\psi$:
+\[
+\begin{aligned}
+    \psi \phi'u' + \phi\phi'v' &= 0\\
+    \phi \psi'u' + \phi\phi'v' &= \frac{1}{a} \phi f\\
+\end{aligned}
+\]
+
+\section{4/22/16: $n$-th Order LDE's with Constant Coefficients--Homogeneous Case}
+\[ L[x] = a_0x^{(n)} + a_1x^{(n-1)} + a_2x^{(n-2)}+ \cdots + a_{n-1}x' + a_nx \]
+\[ a_0, a_1, a_2, \dots, a_n \in \mathbb{R} \]
+
+Homogeneous LDE based on: $L[x] = 0$.
+
+\begin{theorem}
+The solution set \[ L^{-1}[0] \coloneqq \{ x \in C^n(\mathbb{R},\mathbb{R}) \ | \ L[x] = 0 \} \]
+is a subspace of $C^n(\mathbb{R},\mathbb{R})$, in that it is closed under addition and scaling. That is, if $x_1,x_2 \in L^{-1}[0]$, then $x_1 + x_2 \in L^{-1}[0]$ and $cx_1 \in L^{-1}[0]$ for $\forall c \in \mathbb{R}$.
+\end{theorem}
+
+Our task now is to find $n$ linearly independent real-valued solutions $\psi_1,\psi_2,\dots,\psi_n$ of $L[x] = 0$. 
+\[ L[e^{rt}] = (a_0r^n + a_1r^{n-1} + \cdots + a_{n-1}r + a_n)e^{rt} = p_L(r)e^{rt} \]
+
+Let us see what happens if we have polymultiplicative roots. Let \[ p_L(r) = a_0(r-r_1)^{m_1}\cdots(r - r_k)^{m_k}((r-\alpha_1)^2 + \beta_1^2)^{n_1}\cdots ((r - \alpha_j)^2 + \beta_j^2)^{n_j} \]
+
+Claim: For each real root $r_l$ or $p_L$, we have $m_l$ distinct solutions, as follows:
+\[ (e^{r_lt}, te^{r_lt}, t^2e^{r_lt}, \dots, t^{m_l - 1}e^{r_lt} \]
+
+To show that this is the case, we first introduce the \textbf{Leibniz Rule}:
+\[ (fg)^{(n)} = \sum_{k=0}^n \binom{n}{k}f^{(n-k)}g^{(k)} \]
+which can be easily proved by induction.
+
+\[
+\begin{aligned}
+  L[e^{rt}] &= p_L(r)e^{rt}  \\
+  L[e^{r_lt}] &= 0 \\
+  \frac{\partial^{\mu}}{\partial r^{\mu}} L[e^{rt}] &= \frac{\partial^{\mu}}{\partial r^{\mu}} [p_L(r)e^{rt}] \\
+  L\left[\frac{\partial^{\mu}}{\partial r^{\mu}}\right] &= \sum_{\nu = 0}^{\mu}x \binom{\mu}{\nu}p_L^{(\mu - \nu)}(r)\{e^{rt}\}^{(\nu)} 
+\end{aligned}
+\]
+
 \end{document}
