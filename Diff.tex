@@ -1555,4 +1555,33 @@ which can be easily proved by induction.
 \end{aligned}
 \]
 
+\section{5/3/16: Constant-Coefficient Linear Equations, Order $n$--Homogeneous Case}
+\[ L[x] = ax'' + bx' + cx = f(t), \qquad a,b,c \in \mathbb{R}, a\neq 0 \]
+The general solution of the inhomogeneous equation $L[x] = f$ is \[ L^{-1}[f] = \{\psi_p + r\psi + s\phi \ | \ r,s \in \mathbb{R} \} \] where $\psi_p$ is a particular solution, i.e., $L[\psi_p] = f$, and $\psi, \phi$ are linearly independent solutions of $L[x] = 0$. \\\\
+Now we consider the case of ordeer $n$:
+\[ L[x] = a_0x^{(n)} + a_1x^{(n-1)} + \cdots + a_{n-1}x' + a_nx \]
+\[ (a_0,a_1,\dots,a_{n-1},a_n) \in \mathbb{R}; a_0 \neq 0 \]
+To find our general solution:
+\[ L^{-1}[0] = \{ x \in PC^n(\mathbb{R},\mathbb{R}) \ | \ L[x] = 0 \} \]
+where $PC^n(\mathbb{R},\mathbb{R}) = \{ \text{ piecewise $n$-differentiable functions } \mathbb{R} \to \mathbb{R} \}$. \\
+It turns out that $\exists$ $n$ lineraly independent solutions $\psi_1, \psi_2, \dots, \psi_n$ (real-valued), and \[ L^{-1}[0] = \vspan_{\mathbb{R}}(\psi_1,\psi_2,\dots,\psi_n) = \{ c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n \ | \ c_1,c_2,\dots,c_n \in \mathbb{R} \} \]
+These solutions are the \underline{fundamental solutions}.
+\[
+\begin{aligned}
+  L[e^{rt}] &= p_L(r)e^{rt} \\
+  &= (a_0r^n + a_1r^{n-1} + \cdots + a_{n-1}r + a_n)e^{rt} 
+\end{aligned}
+\]
+For any real root $\rho$ of $p_L$ (if any exist), and if $\mult(\rho; p_L) = k \ge 1$, $\rho$ will contribute the following $k$ fundamental solutions: $t^{j-1}e^{\rho t}$, where $1 \le j \le k$.
+To show that these are solutions:
+\[
+\begin{aligned}
+  L[e^{rt}] &\equiv p_L(r)e^{rt} \\
+  \frac{\partial^j}{\partial r^j} L[e^{rt}] &\equiv \frac{\partial^j}{\partial r^j}\{p_L(r)e^{rt}\} \\
+  L\left[\frac{\partial^j}{\partial r^j}e^{rt}\right] &\equiv \sum_{\mu = 0}^j \binom{j}{\mu} p_L^{(j-u)}(r)t^{\mu}e^{rt} \\
+  L[t^je^{\rho t}] &\equiv 0
+\end{aligned}
+\]
+For any nonreal root $\alpha + i\beta$ ($\beta \neq 0$) of $p_L$, let $\mult(\alpha + i\beta; p_L) = m \ge 1$.
+
 \end{document}
