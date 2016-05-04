@@ -1582,6 +1582,19 @@ To show that these are solutions:
   L[t^je^{\rho t}] &\equiv 0
 \end{aligned}
 \]
-For any nonreal root $\alpha + i\beta$ ($\beta \neq 0$) of $p_L$, let $\mult(\alpha + i\beta; p_L) = m \ge 1$.
+
+
+\section{5/4/16: Finding Fundamental Solutions; Their Linear Independence}
+For any pair of nonreal conjugate roots, $\alpha + i\beta$, of multiplicity $m$, generate $2m$ distinct solutions, namely:
+\[ e^{\alpha t}\cos{\beta t}, te^{\alpha t}\cos{\beta t}, t^2e^{\alpha t}\cos{\beta t}, \dots, t^{m-1}e^{\alpha t}\cos{\beta t} \]
+\[ e^{\alpha t}\sin{\beta t}, te^{\alpha t}\sin{\beta t}, t^2e^{\alpha t}\sin{\beta t}, \dots, t^{m-1}e^{\alpha t}\sin{\beta t} \]
+
+First, we prove that all the complex-valued solutions are linearly independent.
+\[ p_L(r) = (r-r_1)^{m_1}(r-r_2)^{m_2}\cdots(r-r_k)^{m_k} \] where $r_1,r_2,\dots,r_k$ are the distinct complex roots. \\
+Let \[ \phi_{ij}(t) \coloneqq t^{j-1}e^{r_it}, \qquad 1\le i \le k, 1 \le j \le m_i \]
+
+\begin{theorem}
+The $n$ functions $\phi_{ij}$ are complex linearly independent, i.e. \[ \sum_{\substack{1 \le i \le k \\ 1 \le j \le m_i}}c_{ij}\phi_{ij} = 0 \to c_{ij} = 0 \]
+\end{theorem}
 
 \end{document}
