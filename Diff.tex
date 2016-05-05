@@ -1597,4 +1597,28 @@ Let \[ \phi_{ij}(t) \coloneqq t^{j-1}e^{r_it}, \qquad 1\le i \le k, 1 \le j \le 
 The $n$ functions $\phi_{ij}$ are complex linearly independent, i.e. \[ \sum_{\substack{1 \le i \le k \\ 1 \le j \le m_i}}c_{ij}\phi_{ij} = 0 \to c_{ij} = 0 \]
 \end{theorem}
 
+\begin{proof}
+Consider the polynomial \[ \sum_{i=1}^k \left[\underbrace{\sum_{j=1}^{m_i}c_{ij}t^{j-1}}_{P_i(t)}\right]e^{r_it} \equiv 0 \]
+Assume for contradiction that some $c_{ij}$ is nonzero. So at least one $P_i$ is not identically 0, i.e. $\deg{P_i} \ge 0$. WLOG let this be $P_k(t)$. Then,
+\[
+\begin{aligned}
+  P_1(t)e^{r_1t} + P_2(t)e^{r_2t} + \cdots + P_k(t)e^{r_kt} &\equiv 0 \\
+  P_1(t) + P_2(t)e^{(r_2 - r_1)t} + \cdots + P_k(t)e^{(r_k-r_1)t} &\equiv 0 \\
+\end{aligned}
+\]
+Differentiating with respect to $t$ exactly $m_1$ times: ($Q_2(t) = (r_2 - r_1)P_2(t) + P_2'(t)$)
+\[
+\begin{aligned}
+  Q_2(t)e^{r_2t} + Q_3(t)e^{r_3t} + \cdots + Q_k(t)e^{r_kt} &\equiv 0
+\end{aligned}
+\]
+We can iterate this process and finally get \[ S_k(t)e^{r_kt} \equiv 0 \] But this is false, since we assumed that it was nonzero.
+\end{proof}
+
+\section{5/5/16: Linear Independence of the Fundamental Solutions}
+\subsection{Real Linear Independence of the Real-Valued Fundamental Solutions}
+Consider \[ (e^{\alpha t}\cos{\beta t}) + i(e^{\alpha t}\sin{\beta t}) = e^{(\alpha + \beta i)t} = \phi_{ij} \]
+\[ (e^{\alpha t}\cos{\beta t}) - i(e^{\alpha t}\sin{\beta t}) = e^{(\alpha - \beta i)t} = \phi_{\hat{i}\hat{j}} \]
+We claim that \[ rf + sg = \left(\frac{r+is}{2}\right)(f+ig) + \left(\frac{r-is}{2}\right)(f-ig) \]
+but the fractions are zero, so $r,s = 0$, therefore the solutions are linearly independent.
 \end{document}
