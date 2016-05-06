@@ -1621,4 +1621,90 @@ Consider \[ (e^{\alpha t}\cos{\beta t}) + i(e^{\alpha t}\sin{\beta t}) = e^{(\al
 \[ (e^{\alpha t}\cos{\beta t}) - i(e^{\alpha t}\sin{\beta t}) = e^{(\alpha - \beta i)t} = \phi_{\hat{i}\hat{j}} \]
 We claim that \[ rf + sg = \left(\frac{r+is}{2}\right)(f+ig) + \left(\frac{r-is}{2}\right)(f-ig) \]
 but the fractions are zero, so $r,s = 0$, therefore the solutions are linearly independent.
+
+\section{5/6/16: The fundamental solutions span the (real-valued) solution space.}
+
+\[ L[x] = 0 \qquad \qquad \text{where } L[x] = a_0x^{(n)} + a_1x^{(n-1)} + \cdots + a_nx \]
+
+Let us pick some arbitary real-valued solution, $X \in L^{-1}[0]$. Our inital data is:
+\[
+\begin{cases}
+x(0) &= X(0) \\
+x'(0) &= X'(0) \\
+x''(0) &= X''(0) \\
+\vdots &= \vdots \\
+x^{(n-1)} &= X^{(n-1)}(0) 
+\end{cases}
+\]
+
+Via from manipulation, by Picard's Theorem, the set $\mathcal{S}$ of all real-valued solutions of the differential equation is a singleton set.
+
+\begin{theorem}
+$\exists \ c_1,c_2,\dots,c_n \in \mathbb{R}$ s.t.
+\[ \psi(t) = c_1\psi_1(t) + c_2\psi_2(t) + \cdots + c_n\psi_n(t) \]
+satisfies our differential equation. So $\psi \in \mathcal{S}$. Thus $\psi = X$. I.e. any arbitrary solution $X$ of $L[x] = 0$ is some real-linear combination of $\psi_1,\psi_2,\dots,\psi_n$ (the fundamental solutions).
+\end{theorem}
+
+We require the use of the Fundamental Theorem of Linear Algebra.
+\begin{theorem}[Fundamental Theorem of Linear Algebra]
+Let ${\bf A} \in \mathbb{R}^{n\times n}$. Then ${\bf A}$ has a two-sided inverse iff $\det{{\bf A}} \neq 0$.
+\end{theorem}
+
+\begin{proof}
+It is trivial to prove that $\psi$ satisfies the differential equation. Now we write
+\[
+\begin{cases}
+\psi_1(0)c_1 + \psi_2(0)c_2 + \cdots + \psi_n(0)c_n &= X(0) \\
+\psi_1'(0)c_1 + \psi_2'(0)c_2 + \cdots + \psi_n'(0)c_n &= X'(0) \\
+&\vdots \\
+\psi_1^{(n-1)}(0)c_1 + \psi_2^{(n-1)}(0)c_2 + \cdots + \psi_n^{(n-1)}(0)c_n &= X^{(n-1)}(0) \\
+\end{cases}
+\]
+
+To write shorthand for this system of equations, we can write a matrix \[ {\bf A}(t) = 
+\begin{bmatrix}
+\psi_1(t) & \psi_2(t) & \cdots & \psi_n(t) \\
+\psi_1'(t) & \psi_2'(t) & \cdots & \psi_n'(t) \\
+\vdots & \vdots & \ddots & \vdots \\
+\psi_1^{(n-1)}(t) & \psi_2^{(n-1)}(t) & \cdots & \psi_n^{(n-1)}(t)
+\end{bmatrix}
+\]
+
+We define the Wronskian of ${\bf A}(t)$ to be $W(t) = \det{{\bf A}(t)}$. So now our equation is
+\[
+\begin{aligned}
+  \begin{bmatrix}
+    \psi_1(0) & \psi_2(0) & \cdots & \psi_n(0) \\
+    \psi_1'(0) & \psi_2'(0) & \cdots & \psi_n'(0) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \psi_1^{(n-1)}(0) & \psi_2^{(n-1)}(0) & \cdots & \psi_n^{(n-1)}(0)
+  \end{bmatrix}
+  \begin{bmatrix}
+    c_1 \\ c_2 \\ \vdots \\ c_n
+  \end{bmatrix}
+  &= 
+  \begin{bmatrix}
+    X(0) \\ X'(0) \\ \vdots \\ X^{(n-1)}(0)
+  \end{bmatrix} \\
+  {\bf A}(0)\vec{c} &= \vec{b}  \\
+  \vec{c} &= {\bf A}^{-1}(0)\vec{b}
+\end{aligned}
+\]
+
+By the Fundamental Theorem of Linear Algebra, it suffices to prove that $W(0) \neq 0$. We instead prove that $W(t) \neq 0$ for all $t \in \mathbb{R}$. \\ \\
+First we note that $W(t) \not \equiv 0$. Suppose that it was. Then looking at our system of equations, there would be that the coefficient matrix is non-invertible. (i.e. the reduced row-echelon form of the matrix has more columns than rows) However, this would imply that there is a non-trivial solution for $\vec{c}$. But this can't be, as the fundamental solutions are linearly independent. \\ \\
+
+We will show that $W(t)$ satisfies a linear differential equation, therefore $W(t) = ce^{rt}$, which is never zero as long as $c \neq 0$. But that can't happen, since $W(t) \not \equiv 0$.
+
+\[ W(t) = \det 
+\begin{bmatrix}
+\psi_1 & \psi_2 & \cdots & \psi_n \\
+\psi_1' & \psi_2' & \cdots & \psi_n' \\
+\vdots & \vdots & \ddots & \vdots \\
+\psi_1^{(n-1)} & \psi_2^{(n-1)} & \cdots & \psi_n^{(n-1)} 
+\end{bmatrix}
+\]
+
+
+\end{proof}
 \end{document}
