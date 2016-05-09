@@ -1707,4 +1707,56 @@ We will show that $W(t)$ satisfies a linear differential equation, therefore $W(
 
 
 \end{proof}
+
+\section{Spanning of the $n$ Fundamental Solutions; Variation of Parameters}
+
+\subsection{The Determinant Function}
+$f(\vec{a}_1,\vec{a}_2,\dots,\vec{a}_n) = F({\bf A})$ where $\vec{a}_j = (a_{1j}, a_{2j}, \dots, a_{nj}) \in \mathbb{R}^n$ and ${\bf A} = [\vec{a}_1 \ \brokenvert \ \vec{a}_2 \ \brokenvert \cdots \brokenvert \ \vec{a}_n] \in \mathbb{R}^{n\times n}$
+
+Axioms for $f$:
+\begin{enumerate}
+\item $f$ is multilinear (linear in each slot): \[ f(\dots,r\vec{a}+s\vec{b},\dots) = rf(\dots,\vec{a},\dots) + sf(\dots,\vec{b},\dots) \]
+\item $f$ is alternating (skew-symmetric): \[ f(\dots,\vec{a},\dots,\vec{b},\dots) = -f(\dots,\vec{b},\dots,\vec{a},\dots) \]
+\item $f$ is normalized: \[ f(\vec{e}_1,\vec{e}_2,\dots,\vec{e}_n) = f(I) = 1 \]
+\end{enumerate}
+
+\begin{theorem}
+There's a unique such $f$.
+\end{theorem}
+
+\begin{proof}
+\[ \vec{a}_j = \sum_{i_j=1}^na_{i_jj}\vec{e}_{i_j} = (a_{1j},a_{2j},\dots,a_{kj}) \]
+
+  \[
+\begin{aligned}
+  f({\bf A}) &= f\left(\sum_{i_1=1}^na_{i_11}\vec{e}_{i_1},\sum_{i_2=1}^na_{i_22}\vec{e}_{i_2},\cdots,\sum_{i_n=1}^na_{i_nn}\vec{e}_{i_n}\right) \\
+  &= \sum_{i_1=1}^n\sum_{i_2=1}^n\cdots\sum_{i_n=1}^n(a_{i_11}a_{i_22}\cdots a_{i_nn})f(\vec{e}_1,\vec{e}_2,\dots,\vec{e}_n)\\
+  &= \sum_{\vec{p} \in S_n}(a_{i_11}a_{i_22}\cdots a_{i_nn})(-1)^{N(\vec{p})}
+\end{aligned}
+  \]
+
+where $N(\vec{p}) = \#\{(p_i,p_j) \ | \ i < j, p_i > p_j\}$ (number of inversions). This is defined to be the determinant function of ${\bf A}$.
+\end{proof}
+
+\begin{theorem}
+\[ \det{{\bf A}^T} = \det{{\bf A}} \]
+\end{theorem}
+
+\begin{proof}
+\[
+\begin{aligned}
+  \det{{\bf A}^T} &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})\hat{a}_{i_11}\hat{a}_{i_22}\cdots \hat{a}_{i_nn} \\
+  &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})a_{1i_1}a_{2i_2}\cdots a_{ni_n}
+\end{aligned}
+\]
+There must be a $i_k = 1$, since there are a permutation. Then,
+\[
+\begin{aligned}
+  \det{{\bf A}^T} &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})a_{1i_1}a_{2i_2}\cdots a_{ni_n} \\
+  &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})a_{1i_1}a_{2i_2}\cdots a_{ki_k}\cdots a_{ni_n} \\
+  &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})a_{1i_1}a_{2i_2}\cdots a_{q_11}\cdots a_{ni_n} \\
+  &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})a_{q_11}a_{q_22}\cdots a_{q_nn}
+\end{aligned}
+\]
+\end{proof}
 \end{document}
