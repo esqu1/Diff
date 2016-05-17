@@ -1758,6 +1758,17 @@ There must be a $i_k = 1$, since there are a permutation. Then,
   &= \sum_{\vec{p} \in S_n}(\sgn \vec{p})a_{q_11}a_{q_22}\cdots a_{q_nn}
 \end{aligned}
 \]
+Given $\vec{p} \in S_n$, define $\vec{q} = \pvec{p}^{\dashv} \in S_n$. Note that $\vec{p}$ is a one-to-one function of its subscript ($p_j = p_k \Rightarrow j = k$). \\ \\
+The domain of $\vec{q}$ (as a function of its subscript, $a$) is the range of $\vec{p}$, namely $[n] = \{1,2,\dots,n\}$, so $\vec{q}$ is a one-to-one function on $[n]$; the range of $\vec{q}$ is the domain of $\vec{p}$ again $[n]$. i.e. $\vec{q} \in S_n$.
+
+\begin{lemma}
+$\sgn{\vec{p}} = \sgn{\pvec{p}^{\dashv}}$
+\end{lemma}
+\begin{proof}
+By definition, $\sgn{\vec{p}} \coloneqq (-1)^{N(\vec{p})}$, where $N(\vec{p})$ denotes the inversion number. \[ N(\vec{q}) = \#\{ (a,b) \ | \ \underbrace{a}_{p_k}<\underbrace{b}_{p_j}, \underbrace{q_a}_k > \underbrace{q_b}_j \} = N(\vec{p})\]
+\end{proof}
+
+
 \end{proof}
 
 \section{5/11/16}
@@ -1769,4 +1780,35 @@ The following properties are true of the determinant function.
 \item Replacing a row by some multiple of another row leaves $\det{\bf A}$ unchanged.
 \end{enumerate}
 \end{theorem}
+
+\section{5/16/16}
+
+\begin{theorem}[Fundamental Theorem of Matrix Algebra]
+A matrix ${\bf A}$ is invertible if and only if $\det{\bf A} \neq 0$.
+\end{theorem}
+
+\begin{proof}
+For the reverse direction:
+\[
+\begin{aligned}
+  {\bf A}{\bf A}^{-1} &= {\bf I} \\
+  \det({\bf A}{\bf A}^{-1}) &= \det{\bf I} \\
+  \underbrace{(\det{\bf A})}_{\neq 0}(\det{\bf A}^{-1}) &= 1
+\end{aligned}
+\]
+For the forward direction ($\det{\bf A} \neq 0 \Rightarrow \exists {\bf B} : \ {\bf A}{\bf B} = {\bf I}$), the condition on the determinant implies that the reduced row echelon form of ${\bf A}$ is ${\bf I}$. \[ [{\bf A} \ \brokenvert \ {\bf I}] \to [{\bf I} \ \brokenvert \ {\bf B}] \]
+We also claim that ${\bf B}$ is a left inverse. For this, we define \textbf{elementary matrices}:
+\begin{itemize}
+\item Exchange of rows \[ \mathscr{E}_{ij}({\bf A}) = \underbrace{\mathscr{E}_{ij}({\bf I})}_{E_{ij}}{\bf A} \]
+\item Row scaling \[ \mathscr{S}_{i,c}({\bf A}) = \underbrace{\mathscr{S}_{i,c}({\bf I})}_{S_{i,c}}{\bf A} \]
+\item Row shear \[ \mathscr{R}_{i,j,c}({\bf A}) = \underbrace{\mathscr{R}_{i,j,c}({\bf I})}_{R_{i,j,c}}{\bf A} \]
+\end{itemize}
+
+We can represent ${\bf B}$ as a string of elementary matrix multiplication operations.
+\end{proof}
+
+\section{5/17/16: Determinant Rule of Differentiation--Its Consequences}
+
+
+
 \end{document}
