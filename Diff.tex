@@ -1809,6 +1809,63 @@ We can represent ${\bf B}$ as a string of elementary matrix multiplication opera
 
 \section{5/17/16: Determinant Rule of Differentiation--Its Consequences}
 
+Pick an arbitrary $X \in L^{-1}[0] = \{x \ | \ x \in PC^n(\mathbb{R},\mathbb{R})\}$. We form an initial value problem as follows:
+
+\[ 
+\begin{cases}
+  L[x] = 0 \\
+  x(0) = X(0) \\
+  x'(0) = X'(0) \\
+  \quad \vdots \\
+  x^{(n-1)}(0) = X^{(n-1)}(0)
+\end{cases}
+\]
+
+The unique solution of this IVP, by Picard's Theorem, must be $X$. \\ \\
+On the other hand, some linear combination $c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n$ ($c_1,c_2,\dots,c_n \in \mathbb{R}$)-- where $\psi_1,\psi_2,\dots,\psi_n$ are the linearly independent fundamental solutions--solves the IVP too. Therefore, \[ X = c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n \]
+\[ L^{-1}[0] = \vspan_{\mathbb{R}}(\psi_1,\psi_2,\dots,\psi_n) \]
+
+\subsection{Abel's Theorem}
+\begin{theorem}[Abel's Theorem]
+\[ W'(t) = bW(t) \qquad (b \neq 0)\]
+\end{theorem}
+
+\begin{proof}
+\[ W(t) = \det{M(t)} = \det[\vec{m}_1(t) \ \brokenvert \ \vec{m}_2(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)] \]
+
+Leibniz Rule for Determinants:
+\[ \frac{d}{dt} \det[\vec{m}_1(t) \ \brokenvert \ \vec{m}_2(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)] = \sum_{j=1}^m\det[\vec{m}_1(t) \ \brokenvert \cdots \brokenvert \ \vec{m}'_j(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)] \]
+
+\[ 
+\begin{aligned}
+  \frac{d}{dt}\det{M(t)} = \sum_{\vec{p} \in S_n}(\sgn{\vec{p}})[a_{p_11}a_{p_22}\cdots a_{p_nn}]' &= \sum_{\vec{p} \in S_n}(\sgn{\vec{p}})\left[\sum_{j=1}^n a_{p_11}\cdots a'_{p_jj}\cdots a_{p_nn}\right] \\
+  &= \sum_{j=1}^n\left[\sum_{\vec{p}\in S_n}(\sgn{\vec{p}}) a_{p_11}\cdots a'_{p_jj}\cdots a_{p_nn}\right] \\
+  &= \sum_{j=1}^m\det[\vec{m}_1(t) \ \brokenvert \cdots \brokenvert \ \vec{m}'_j(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)]
+\end{aligned}
+\]
+
+Now,
+\[
+\begin{aligned}
+  W'(t) &= \frac{d}{dt}\det{M(t)} \\
+  &= \begin{vmatrix} \psi_1' & \psi_2' & \cdots \\ \psi_1' & \psi_2' & \cdots \\ \vdots & \vdots & \ddots \end{vmatrix} + 
+  \begin{vmatrix} \psi_1 & \psi_2 & \cdots \\ \psi_1'' & \psi_2'' & \cdots  \\ \psi_1'' & \psi_2'' & \cdots \\ \vdots & \vdots & \ddots \end{vmatrix} + \begin{vmatrix} \psi_1 & \psi_2 & \cdots \\ \psi_1' & \psi_2' & \cdots \\ \vdots & \vdots & \vdots \\ \psi_1^{(n)} & \psi_2^{(n)} & \cdots \end{vmatrix} \\
+  &=  \begin{vmatrix} \psi_1 & \psi_2 & \cdots \\ \psi_1' & \psi_2' & \cdots \\ \vdots & \vdots & \vdots \\ \psi_1^{(n)} & \psi_2^{(n)} & \cdots \end{vmatrix} \\
+  &= \begin{vmatrix}
+  \psi_1 & \psi_2 & \cdots \\ \psi_1' & \psi_2' & \cdots \\ \vdots & \vdots & \vdots \\ -\displaystyle\sum_{k=1}^n\frac{a_k}{a_0}\psi_1^{(n-k)} & -\displaystyle\sum_{k=1}^n\frac{a_k}{a_0}\psi_2^{(n-k)} & \cdots 
+  \end{vmatrix}
+\end{aligned}
+\]
+The terms in the last row contain sums of multiples of different rows in the matrix. We can get rid of these terms by the properties of the determinant, and we are left with 
+\[
+\begin{aligned}
+  W'(t) &= \begin{vmatrix}
+  \psi_1 & \psi_2 & \cdots \\ \psi_1' & \psi_2' & \cdots \\ \vdots & \vdots & \vdots \\ -\frac{a_1}{a_0}\psi_1^{(n-1)} & -\frac{a_1}{a_0}\psi_2^{(n-1)} & \cdots 
+  \end{vmatrix} \\
+  &= -\frac{a_1}{a_0}W(t)
+\end{aligned}
+\]
+\end{proof}
 
 
 \end{document}
