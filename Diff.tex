@@ -1692,7 +1692,7 @@ We define the Wronskian of ${\bf A}(t)$ to be $W(t) = \det{{\bf A}(t)}$. So now 
 \]
 
 By the Fundamental Theorem of Linear Algebra, it suffices to prove that $W(0) \neq 0$. We instead prove that $W(t) \neq 0$ for all $t \in \mathbb{R}$. \\ \\
-First we note that $W(t) \not \equiv 0$. Suppose that it was. Then looking at our system of equations, there would be that the coefficient matrix is non-invertible. (i.e. the reduced row-echelon form of the matrix has more columns than rows) However, this would imply that there is a non-trivial solution for $\vec{c}$. But this can't be, as the fundamental solutions are linearly independent. \\ \\
+First we note that $W(t) \not \equiv 0$. Suppose that it was. Then looking at our system of equations, there would be that the coefficient matrix is non-invertible. (i.e. the reduced row-echelon form of the matrix has more columns than rows) However, this would imply that there is a non-trivial solution for $\vec{c}$ when $\vec{b} = \vec{0}$. But this can't be, as the fundamental solutions are linearly independent. \\ \\
 
 We will show that $W(t)$ satisfies a linear differential equation, therefore $W(t) = ce^{rt}$, which is never zero as long as $c \neq 0$. But that can't happen, since $W(t) \not \equiv 0$.
 
@@ -1831,16 +1831,19 @@ On the other hand, some linear combination $c_1\psi_1 + c_2\psi_2 + \cdots + c_n
 \end{theorem}
 
 \begin{proof}
-\[ W(t) = \det{M(t)} = \det[\vec{m}_1(t) \ \brokenvert \ \vec{m}_2(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)] \]
+\[ W(t) = \det{M(t)} =\det\left[\begin{array}{c:c:c:c} \vec{m}_1(t) & \vec{m}_2(t) & \cdots & \vec{m}_n(t) \end{array}\right] \]
 
 Leibniz Rule for Determinants:
-\[ \frac{d}{dt} \det[\vec{m}_1(t) \ \brokenvert \ \vec{m}_2(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)] = \sum_{j=1}^m\det[\vec{m}_1(t) \ \brokenvert \cdots \brokenvert \ \vec{m}'_j(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)] \]
+
+
+\[ \frac{d}{dt} \det\left[\begin{array}{c:c:c:c} \vec{m}_1(t) & \vec{m}_2(t) & \cdots & \vec{m}_n(t) \end{array}\right] = 
+\sum_{j=1}^m \det\left[\begin{array}{c:c:c:c:c} \vec{m}_1(t) & \cdots & \pvec{m}'_j(t) & \cdots & \vec{m}_n(t) \end{array}\right] \]
 
 \[ 
 \begin{aligned}
   \frac{d}{dt}\det{M(t)} = \sum_{\vec{p} \in S_n}(\sgn{\vec{p}})[a_{p_11}a_{p_22}\cdots a_{p_nn}]' &= \sum_{\vec{p} \in S_n}(\sgn{\vec{p}})\left[\sum_{j=1}^n a_{p_11}\cdots a'_{p_jj}\cdots a_{p_nn}\right] \\
   &= \sum_{j=1}^n\left[\sum_{\vec{p}\in S_n}(\sgn{\vec{p}}) a_{p_11}\cdots a'_{p_jj}\cdots a_{p_nn}\right] \\
-  &= \sum_{j=1}^m\det[\vec{m}_1(t) \ \brokenvert \cdots \brokenvert \ \vec{m}'_j(t) \ \brokenvert \cdots \brokenvert \ \vec{m}_n(t)]
+  &= \sum_{j=1}^m\det\left[\begin{array}{c:c:c:c:c} \vec{m}_1(t) & \cdots & \pvec{m}'_j(t) & \cdots & \vec{m}_n(t) \end{array}\right]
 \end{aligned}
 \]
 
@@ -1866,6 +1869,9 @@ The terms in the last row contain sums of multiples of different rows in the mat
 \end{aligned}
 \]
 \end{proof}
+
+\section{5/18/16}
+
 
 
 \end{document}
