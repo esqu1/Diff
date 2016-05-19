@@ -1870,8 +1870,64 @@ The terms in the last row contain sums of multiples of different rows in the mat
 \]
 \end{proof}
 
-\section{5/18/16}
+\section{5/19/16: Variation of Parameters; Undetermined Coefficients}
 
+$L[x] = f$ where $f \in PC(I,\mathbb{R})$, where $I \subseteq \mathbb{R}$ is an interval (nonsingleton). Our goal here is to find all possible solutions $x(t)$, defined on $I$. \\ \\
+Suppose the fundamental solutions of the equation $L[x] = 0$ are $\psi_1,\psi_2,\dots,\psi_n$.
 
+\begin{theorem}
+If $\phi$ is one particular solution of $L[x] = f$, then the complete solution set of $L[x] = f$ is \[ L^{-1}[f] = \{ \phi + c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n \} \]
+\end{theorem}
+
+\begin{proof}
+Showing that this is a solution of the equation is trivial. We now must show that every solution of the equation has this form.\\ \\
+Let $\theta$ be an arbitrary solution; thus $L[\theta] = f$. Note that \[ L[\theta - f] = L[\theta] - L[\phi] = f - f = 0 \] so $\theta - \phi \in L^{-1}[0]$. It follow that \[ \theta - \phi = c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n \] and the conclusion follows.
+\end{proof}
+
+\subsection{Variation of Parameters}
+Assume we can find some functions $u_1(t),u_2(t),\dots,u_n(t)$ satisfying 
+\[
+\begin{cases}
+  \psi_1u'_1 + \psi_2u'_2 + \cdots + \psi_nu'_n = 0 \\
+  \psi'_1u'_1 + \psi'_2u'_2 + \cdots + \psi'_nu'_n = 0 \\
+  \psi''_1u'_1 + \psi''_2u'_2 + \cdots + \psi''_nu'_n = 0 \\
+  \vdots \\
+  \psi^{(n-1)}_1u'_1 + \psi^{(n-1)}_2u'_2 + \cdots + \psi^{(n-1)}_nu'_n = \left(\frac{1}{a_0}\right)f
+\end{cases}
+\]
+
+By solving this, we get that \[ u_1' = \frac{P(\psi_1,\dots,\psi_n,\psi_1',\dots,\psi_n',\dots,\psi_1^{(n-1)},\dots,\psi_n^{(n-1)},f)}{W} \]
+
+\textbf{Claim}: $\phi = \psi_1u_1 + \psi_2u_2 + \cdots + \psi_nu_n$ is a solution of $L[x] = f$.
+
+\[
+\begin{cases}
+  \phi' = \psi_1'u_1 + \psi_2'u_2 + \cdots + \psi_n'u_n \\
+  \phi'' = \psi_1''u_1 + \psi_2''u_2 + \cdots + \psi_n''u_n \\
+  \vdots
+  \psi^{(n)} = \frac{f}{a_0} + \psi_1^{(n)}u_1 + \psi_2^{(n)}u_2 + \cdots + \psi_n^{(n)}u_n
+\end{cases}
+\]
+
+\[
+\begin{aligned}
+  L[\phi] &= a_0\phi^{(n)} + a_1\phi^{(n-1)} + \cdots + a_n\phi \\
+  &= f + u_1L[\psi_1]+ u_2L[\psi_2 + \cdots + u_nL[\psi_n] \\
+    &= f
+\end{aligned}
+\]
+
+To find the polynomial $P$, we use Cramer's Rule:
+\begin{theorem}[Cramer's Rule]
+If ${\bf A}\vec{x} = \vec{b}$ is a system of equations, the solution of $\vec{x}$ is
+\[ \vec{x} = \begin{bmatrix}
+\frac{\Delta_1}{\Delta} \\ \frac{\Delta_2}{\Delta} \\ \vdots \\ \frac{\Delta_n}{\Delta}
+\end{bmatrix} \]
+where $\Delta = \det{\bf A}$ and $\Delta_j$ is the determinant of the matrix formed by replacing the $j$th column of ${\bf A}$ with $\vec{b}$.
+\end{theorem}
+
+\subsection{Undetermined Coefficients (Annihilator Method)}
+This only works when \[ f(t) = \sum_{k=1}^N P_k(t)e^{a_kt}\trg_k(b_kt) \qquad \trg_k \in \{ \sin, \cos \}, \quad a_k,b_k \in \mathbb{R}\]
+Here, we recall the Principle of Superposition, which states that $L[x] = \displaystyle\sum_{n=1}^Nf_n$ can be solved as $x = \displaystyle\sum_{n=1}^Nx_n$, where $L[x_n] = f_n$ for each $n$.
 
 \end{document}
