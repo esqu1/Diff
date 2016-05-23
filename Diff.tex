@@ -1930,4 +1930,58 @@ where $\Delta = \det{\bf A}$ and $\Delta_j$ is the determinant of the matrix for
 This only works when \[ f(t) = \sum_{k=1}^N P_k(t)e^{a_kt}\trg_k(b_kt) \qquad \trg_k \in \{ \sin, \cos \}, \quad a_k,b_k \in \mathbb{R}\]
 Here, we recall the Principle of Superposition, which states that $L[x] = \displaystyle\sum_{n=1}^Nf_n$ can be solved as $x = \displaystyle\sum_{n=1}^Nx_n$, where $L[x_n] = f_n$ for each $n$.
 
+Using this concept, we can reduce this to when $f(t) = t^ke^{a t}\trg(bt)$. \\ \\
+Our goal is to find a linear differential operator with constant coefficients $M$ which annihilates $f$, such that $M[f] = 0$. We want to minimize the degree of $M$.
+
+\begin{theorem}
+The $M$ of lowest order such that $M[f] = 0$ is (the parentheses terms represents differential operator notation)
+\begin{enumerate}
+\item $f(t) = t^ke^{at}$ ($a \in \mathbb{R}, k \ge 0$) \\
+  $M = \left(\frac{d}{dt} - a \cdot Id\right)^{\circ(k+1)}$ (differential operator composed $k+1$ times)
+\item $f(t) = t^ke^{at}\trg(bt)$ ($b \neq 0; a,b \in \mathbb{R}, k \ge 0$) \\
+  $M = \left\{\left(\frac{d}{dt} - a \cdot Id\right)^{\circ 2} + b^2Id\right\}^{\circ (k+1)}$
+\end{enumerate}
+\end{theorem}
+
+Note that \[ \left\{\left(\frac{d}{dt} - a\cdot Id\right) - (bi)Id\right\} \circ \left\{\left(\frac{d}{dt} - a\cdot Id\right) + (bi)Id\right\} = \left(\frac{d}{dt} - a\cdot Id\right)^{\circ 2} + b^2 + Id \]
+It can be shown that this differential operator done $k+1$ times will give $0$ (the proof is omitted) 
+\subsection{Annihilation}
+But note that $M[L[x]] = M[f] = 0$. This gives another equation, which is homogeneous.
+
+\section{5/23/16}
+\[
+\begin{aligned}
+  L = p_L(D) &= \sum_{j=0}^na_jD^{\circ (n-j)} \\
+  M = p_M(D) &= \sum_{k=0}^mb_kD^{\circ (m-k)} 
+\end{aligned}
+\]
+
+\textbf{Claim}: $M \circ L = (p_Mp_L)(D)$. \\ \\
+\begin{definition}
+The \textbf{root-multiset} of a polynomial $p(r)$ is \[ \mu(p) \coloneqq [\underbrace{r_1,r_1,\dots,r_1}_{m_1},\underbrace{r_2,r_2\dots,r_2}_{m_2}, \dots,\underbrace{r_k,\dots,r_k}_{m_k}] \]
+where $r_1,r_2,\dots,r_k \in \mathbb{C}$ are the distinct complex roots of $p$ and $m_1,m_2,\dots,m_k$ are their multiplicities, respectively.
+\end{definition}
+
+Let $\mu_L = \mu(p_L)$, and $\mu_M = \mu(p_M)$. then $\mu_{M \circ L} = \mu(p_{M \circ L})$. \\ \\
+We also define the \textbf{multiset union} as follows: if
+\[
+\begin{aligned}
+  \mu &= [a_1(\mult n_1), \dots,a_k (\mult n_k)] \\
+  \nu &= [b_1(\mult m_1), \dots,b_l (\mult m_l)]
+\end{aligned}
+\]
+Then we define \[ \mu \ \uplus \ \nu \coloneqq [a_1 (\mult n_1 + m_1), \dots, a_j (\mult n_j + m_j), \dots, a_k (\mult n_k), b_{j+1} (\mult m_{j+1}), \dots, b_l(\mult m_l)] \]
+
+\begin{theorem}
+\[ \mu_{M \circ L} = \mu_M \uplus \mu_L \]
+\[ \mu(pq) = \mu(p) \uplus \mu(q) \]
+\end{theorem}
+
+To prove our claim:
+\[
+\begin{aligned}
+  M \circ L &= p_M(D) \circ p_L(D) \\
+  &= \left(\sum_{k=0}^m b_{m-k}D^{\circ k}\right)\circ \left(\sum_{j=0}^n a_{n-j}D^{\circ j}\right) \\
+\end{aligned}
+\]
 \end{document}
