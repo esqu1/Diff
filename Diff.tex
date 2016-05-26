@@ -1984,4 +1984,69 @@ To prove our claim:
   &= \left(\sum_{k=0}^m b_{m-k}D^{\circ k}\right)\circ \left(\sum_{j=0}^n a_{n-j}D^{\circ j}\right) \\
 \end{aligned}
 \]
+
+\section{5/24/16}
+Among the solutions of $(M \circ L)[x] = 0$, there is a solution of $L[x] = f$, which can be found by a standard algorithm known as ``undetermined coefficients''. \\ \\
+Let the fundamental solutions of $(M \circ L)[x] = 0$ be $\psi_1, \psi_2, \dots, \psi_{n+m}$.
+
+Among these, $\psi_1,\dots,\psi_n$ are already fundamental solutions of $L$.
+
+\section{5/25/16}
+
+
+\begin{theorem}
+If $p,$ are polynomials with real coefficients, then we have the operator equation
+\[ (pq)(D) = p(D) \circ q(D) \]
+More generally,
+\[ (p_1p_2\cdots p_k)(D) = p_1(D) \circ p_2(D) \circ \cdots \circ p_k(D) \]
+\end{theorem}
+
+Note that the operator $M = (D - a\cdot Id)^{\circ (k+1)}$ annihilates the function $x(t) = t^ke^{at}$. The characteristic polynomial of this annihilator is \[ p_M(r) = (r-a)^{k+1} = \underbrace{(r-a)}_{p_1(r)}\underbrace{(r-a)}_{p_2(r)}\cdots\underbrace{(r-a)}_{p_{k+1}(r)} \]
+
+We also note that \[ p_1(D) \circ p_2(D) \circ \cdots \circ p_{k+1}(D) = (D-a\cdot Id)^{\circ (k+1)} = M \]
+Also, we let $q \coloneqq p_1p_2\cdots p_{k+1}$. Then $q(r) = p_1(r)p_2(r)\cdots p_{k+1}(r) = (r-a)^{k+1}$, and $q(D) = M = p_M(D)$. This shows that the characteristic polynomial is unique for an annihilator. % actually idk what we're really trying to show lmao
+
+\subsection{A Fair Warning}
+Notice that $L[x] = f$ implies the statement $(M\circ L)[x] = 0$, but not the other way around. Just because a solution $x(t)$ of $(M \circ L)[x] = 0$ can be found, this does not mean it satisfies $L[x] = f$.
+
+\subsection{Solutions, finally!}
+\begin{theorem}
+Each of the $n$ fundamental solutions of $L[x] = 0$ is among the $n+m$ fundamental solutions of $(M \circ L)[x] = 0$. 
+\end{theorem}
+
+\begin{proof}
+Recall that \[ \mu_{M\circ L} = \mu_M \uplus \mu_L \] where $\mu_P$ denotes the multiset of the characteristic roots of the operator $P$.
+
+If $\rho \in \mathbb{R}$ has multiplicity $k$ in $p_L$, it will generate $k$ fundamental solutions:
+\[ e^{\rho t}, te^{\rho t}, t^2e^{\rho t}, \dots, t^{k-1}e^{\rho t} \]
+Likewise, if $\alpha + i\beta$ and $\alpha - i\beta$ have multiplicity $k$, they will generate $2k$ solutions:
+\[ e^{\alpha t}\cos(\beta t), te^{\alpha t}\cos(\beta t), \dots, t^{k-1}e^{\alpha t}\cos(\beta t) \]
+\[ e^{\alpha t}\sin(\beta t), te^{\alpha t}\sin(\beta t), \dots, t^{k-1}e^{\alpha t}\sin(\beta t) \]
+
+But each characteristic root in $\mu_L$ will also be a characteristic root in $\mu_{M \circ L}$, so every fundamental solution of $L$ will also be a fundamental solution of $M \circ L$.
+\end{proof}
+
+\begin{theorem}
+Let $\psi_1$, $\psi_2$, \dots, $\psi_n$, $\psi_{n+1}$, \dots, $\psi_{n+m}$ be the fundamental solutions (real-valued) of $(M \circ L)[x] = 0$ labeled so that the first $n$ of them are the $n$ fundamental solutions of $L[x] = 0$. Then: there is a unique $m$-tuple of real constants $(a_1,a_2,\dots,a_m)$ such that \[ \phi \coloneqq a_1\psi_{n+1} + a_2\psi_{n+2} + \dots + a_m\psi_{n+m} \] is a solution of $L[x] = f$.
+\end{theorem}
+
+\begin{proof}
+Pick some particular solution $\alpha$ of $L[x] = f$. We know $\alpha$ exists (and is unique) by Picard's Theorem. \\ \\
+The general solution of $L[x] = f$ is \[ \{ \alpha + c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n \ | \ c_1,c_2,\dots,c_n \in \mathbb{R} \} \]
+We must show that for some $(a_1,a_2,\dots,a_m)$ and also some $(c_1,c_2,\dots,c_n)$, \[ \alpha + c_1\psi_1 + c_2\psi_2 + \cdots + c_n\psi_n = \underbrace{a_1\psi_{n+1} + \cdots + a_m\psi_{n+m}}_{\phi} \]
+Or \[ \alpha = -c_1\psi_1 - c_2\psi_2 - \cdots - c_n\psi_n + a_1\psi_{n+1} + \cdots + a_m\psi_{n+m} \]
+We know $L[\alpha] = f \Rightarrow M[L[\alpha]] = M[f] = 0 \Rightarrow \alpha \in (M \circ L)^{-1}[0]$. This means that $\alpha \in \vspan_{\mathbb{R}}(\psi_1,\psi_2,\dots,\psi_{n+m})$. But these means that $\alpha$ is a certain linear combination of the fundamental solutions, whose form is what we sought out to prove.
+
+This means that $\psi$ is indeed a solution of $L[x] = f$, since $\alpha + c_1\psi_1 + \cdots + c_n\psi_n$ satisfies it.
+
+This proves existence; now we must prove uniqueness. \\ \\
+
+Suppose $\phi = a_1\psi_{n+1} + \cdots + a_m\psi_{n+m}$ and $\hat{\phi} = \hat{a}_1\psi_{n+1} + \cdots + \hat{a}_m\psi_{n+m}$ satisfy $L[x] = f$.
+
+Then we wish to show that $a_j = \hat{a}_j$, for $1 \le j \le m$. We know that $\phi - \hat{\phi}$ satisfies $L[x] = 0$. Then:
+\[ \phi - \hat{\phi} = (a_1 - \hat{a}_1)\psi_{n+1} + (a_2 - \hat{a}_2)\psi_{n+2} + \cdots + (a_m - \hat{a}_m)\psi_{n+m} = b_1\psi_1 + b_2\psi_2 + \cdots + b_n\psi_n \]
+\[ b_1\psi_1 + \cdots + b_n\psi_n + (\hat{a}_1 - a_1)\psi_{n+1} + \cdots + (\hat{a}_m - a_m)\psi_{n+m} = 0 \]
+But since $\psi_1,\psi_2,\dots,\psi_{n+m}$ are linearly independent, all of these coefficients must be 0, and so $a_j = \hat{a}_j$.
+\end{proof}
+
 \end{document}
