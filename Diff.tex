@@ -2049,4 +2049,71 @@ Then we wish to show that $a_j = \hat{a}_j$, for $1 \le j \le m$. We know that $
 But since $\psi_1,\psi_2,\dots,\psi_{n+m}$ are linearly independent, all of these coefficients must be 0, and so $a_j = \hat{a}_j$.
 \end{proof}
 
+\section{5/27/16: HOLY CRAP AN EXAMPLE}
+
+\begin{example}
+Find all solutions to $x'' - 4x' - 12x = \sin(2t)$.
+\end{example}
+
+\section{5/31/16: First-Order Linear Vector ODE}
+
+The basic form of this equation looks like \[ \pvec{x}' = {\bf A}\vec{x} \]
+where
+\[ \vec{x} = \begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix} \in \mathbb{R}^n \cong \mathbb{R}^{n \times 1} \qquad 
+{\bf A} = \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix} \]
+
+\begin{definition}
+A \textbf{linear map} $\mathscr{L}: \mathbb{R}^n \to \mathbb{R}^n$ satisfies 
+\begin{itemize}
+\item $\mathscr{L}(\vec{x} + \vec{y}) = \mathscr{L}(\vec{x}) + \mathscr{L}(\vec{y})$ [additivity]
+\item $\mathscr{L}(c\vec{x}) = c\mathscr{L}(\vec{x})$ ($c \in \mathbb{R}$) [scalability]
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+Every linear map $\mathscr{L}: \mathbb{R}^n \to \mathbb{R}^n$ is associated with a function $\mathscr{F}_{\bf A}$ for some ${\bf A} \in \mathbb{R}^{n \times n}$. (${\bf A}$ is uniquely determined by $\mathscr{L}$)
+\end{theorem}
+
+\begin{proof}
+Let \[ A = \left[\begin{array}{c:c:c:c} \mathscr{L}(\vec{e}_1) & \mathscr{L}(\vec{e}_2) & \cdots & \mathscr{L}(\vec{e}_n) \end{array}\right] \]
+We claim that \[ \mathscr{L}(\vec{x}) = {\bf A}\vec{x} = \mathscr{F}_{\bf A}(\vec{x}) \]
+for all $\vec{x} \in \mathbb{R}^n$.
+\[
+\begin{aligned}
+  \mathscr{L}(\vec{x}) &= \mathscr{L}(x_1\vec{e}_1 + x_2\vec{e}_2 + \cdots + x_n\vec{e}_n) \\
+  &= x_1\mathscr{L}(\vec{e}_1) + x_2\mathscr{L}(\vec{e}_2) + \cdots + x_n\mathscr{L}(\vec{e}_n) \\
+  &= x_1\vec{a}_1 + x_2\vec{a}_2 + \cdots + x_n\vec{a}_n
+\end{aligned}
+\]
+But do note that 
+\[
+\begin{aligned}
+  {\bf A}\vec{x} &= {\bf A}(x_1\vec{e}_1 + x_2\vec{e}_2 + \cdots + x_n\vec{e}_n) \\
+  &= x_1({\bf A}\vec{e}_1) + x_2({\bf A}\vec{e}_2) + \cdots + x_n({\bf A}\vec{e}_n) \\
+  &= x_1\vec{a}_1 + x_2\vec{a}_2 + \cdots + x_n\vec{a}_n
+\end{aligned}
+\]
+
+\begin{lemma}
+${\bf A}\vec{x} = {\bf B}\vec{x}$ for all $\vec{x} \in \mathbb{R}^n$ $\Rightarrow$ ${\bf A} = {\bf B}$.
+\end{lemma}
+\begin{proof}
+Take $\vec{x} = \vec{e}_j$, then $\vec{a}_j = {\bf A}\vec{e}_j = {\bf B}\vec{e}_j = \vec{b}_j$.
+\end{proof}
+This shows the uniqueness of ${\bf A}$, and we are done.
+
+\end{proof}
+
+\subsection{Vector Equations}
+
+
+\[ \max_{1 \le j \le n}|p_j - q_j| \le \norm{\vec{p} - \vec{q}} \le \sqrt{n}\max_{1 \le j \le n}|p_j - q_j| \]
+
 \end{document}
